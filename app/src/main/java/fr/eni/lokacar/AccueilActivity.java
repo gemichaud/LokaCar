@@ -10,5 +10,6 @@ public class AccueilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
         System.out.println("coucou");
+        System.out.println("coucou2");
     }
 }
