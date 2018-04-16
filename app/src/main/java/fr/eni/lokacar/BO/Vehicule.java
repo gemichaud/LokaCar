@@ -8,6 +8,9 @@ public class Vehicule {
     private Modele modele;
     private Agence agence;
 
+
+    private int prixJournalier;
+
     public Vehicule() {
     }
 
@@ -59,6 +62,13 @@ public class Vehicule {
         this.agence = agence;
     }
 
+    public int getPrixJournalier() {
+        return prixJournalier;
+    }
+
+    public void setPrixJournalier(int prixJournalier) {
+        this.prixJournalier = prixJournalier;
+    }
     @Override
     public String toString() {
         return "Vehicule{" +
