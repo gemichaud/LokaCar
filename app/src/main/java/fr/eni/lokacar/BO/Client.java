@@ -1,7 +1,9 @@
 package fr.eni.lokacar.BO;
 
+import java.util.UUID;
+
 public class Client {
-    private int iD;
+    private UUID iD;
     private String nom;
     private String prenom;
     private Coordonnee coordonee;
@@ -9,7 +11,7 @@ public class Client {
     public Client() {
     }
 
-    public Client(int iD, String nom, String prenom) {
+    public Client(UUID iD, String nom, String prenom) {
         this.iD = iD;
         this.nom = nom;
         this.prenom = prenom;
@@ -20,13 +22,7 @@ public class Client {
         this.prenom = prenom;
     }
 
-    public int getiD() {
-        return iD;
-    }
 
-    public void setiD(int iD) {
-        this.iD = iD;
-    }
 
     public String getNom() {
         return nom;
@@ -43,4 +39,21 @@ public class Client {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+
+    public UUID getiD() {
+        return iD;
+    }
+
+    public void setiD(UUID iD) {
+        this.iD = iD;
+    }
+
+    public Coordonnee getCoordonee() {
+        return coordonee;
+    }
+
+    public void setCoordonee(Coordonnee coordonee) {
+        this.coordonee = coordonee;
+    }
 }
+
