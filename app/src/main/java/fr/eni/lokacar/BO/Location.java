@@ -11,14 +11,19 @@ class Location {
     private String statut;
     private Client client;
 
+
+
+    private Vehicule vehicule;
+
     public Location() {
     }
 
-    public Location(UUID iD, Date dateDebut, Date dateFinPrevu, String statut) {
+    public Location(UUID iD, Date dateDebut, Date dateFinPrevu, String statut, Vehicule vehicule) {
         this.iD = iD;
         this.dateDebut = dateDebut;
         this.dateFinPrevu = dateFinPrevu;
         this.statut = statut;
+        this.vehicule = vehicule;
     }
 
     public UUID getiD() {
@@ -61,6 +66,14 @@ class Location {
         this.client = client;
     }
 
+    public Vehicule getVehicule() {
+        return vehicule;
+    }
+
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+    }
+
     @Override
     public String toString() {
         return "Location{" +
@@ -68,8 +81,8 @@ class Location {
                 ", dateDebut=" + dateDebut +
                 ", dateFinPrevu=" + dateFinPrevu +
                 ", statut='" + statut + '\'' +
+                ", client=" + client +
+                ", vehicule=" + vehicule.toString() +
                 '}';
     }
-
-
 }
