@@ -11,5 +11,6 @@ public class AccueilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_accueil);
         System.out.println("coucou");
         System.out.println("coucou2");
+        System.out.println("ZAD");
     }
 }
