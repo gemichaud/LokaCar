@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".EtatDesLieuxActivity"
+    android:orientation="vertical"
+    android:background="@drawable/back_edl"
+    android:scaleType = "centerCrop"
+    android:adjustViewBounds="true">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/avant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="7"
+        android:layout_row="0"
+        android:layout_x="166dp"
+        android:layout_y="4dp"
+        android:backgroundTint="@color/backFloatBtn"
+        android:src="@android:drawable/ic_menu_add"
+        android:tint="@color/icFloatBtn" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_x="59dp"
+        android:layout_y="74dp"
+        android:tint="@color/icFloatBtn"
+        android:id="@+id/avGauche"
+        android:src="@android:drawable/ic_menu_add"
+        android:backgroundTint="@color/backFloatBtn" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_x="55dp"
+        android:layout_y="236dp"
+        android:tint="@color/icFloatBtn"
+        android:id="@+id/gauche"
+        android:src="@android:drawable/ic_menu_add"
+        android:backgroundTint="@color/backFloatBtn" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_x="61dp"
+        android:layout_y="404dp"
+        android:tint="@color/icFloatBtn"
+        android:id="@+id/arGauche"
+        android:src="@android:drawable/ic_menu_add"
+        android:backgroundTint="@color/backFloatBtn" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_x="167dp"
+        android:layout_y="463dp"
+        android:tint="@color/icFloatBtn"
+        android:id="@+id/arriere"
+        android:src="@android:drawable/ic_menu_add"
+        android:backgroundTint="@color/backFloatBtn" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_x="269dp"
+        android:layout_y="405dp"
+        android:tint="@color/icFloatBtn"
+        android:id="@+id/arDroit"
+        android:src="@android:drawable/ic_menu_add"
+        android:backgroundTint="@color/backFloatBtn"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_x="274dp"
+        android:layout_y="241dp"
+        android:tint="@color/icFloatBtn"
+        android:id="@+id/droit"
+        android:src="@android:drawable/ic_menu_add"
+        android:backgroundTint="@color/backFloatBtn" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_x="273dp"
+        android:layout_y="77dp"
+        android:tint="@color/icFloatBtn"
+        android:id="@+id/avDroit"
+        android:src="@android:drawable/ic_menu_add"
+        android:backgroundTint="@color/backFloatBtn"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/interieur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_x="168dp"
+        android:layout_y="182dp"
+        android:backgroundTint="@color/backFloatBtn"
+        android:src="@android:drawable/ic_menu_add"
+        android:tint="@color/icFloatBtn" />
+
+</AbsoluteLayout>
