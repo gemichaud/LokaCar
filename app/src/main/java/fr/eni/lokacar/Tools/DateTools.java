@@ -17,17 +17,19 @@ public final class DateTools {
 		Date d = new Date();
 		
 		// Conversion timespamps -> localDateTime
-		String dateString = date.toLocalDateTime().toString();
+
 
 		// Remplacement du caractère T pas " " afin de parser en java.util.date
-		dateString  = dateString.replace("T", " ");
-		
+
+
 		// Définition du format de date 
 		SimpleDateFormat df2 =  new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.FRANCE);
 		try {
-			// Conversion localDateTime -> java.util.date 
-			d =  df2.parse(dateString.toString());
-		} catch (ParseException e) {
+
+			Date netDate = (new Date(Long.parseLong(date.toString())));
+
+
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
