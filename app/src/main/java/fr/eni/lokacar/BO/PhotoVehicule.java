@@ -8,4 +8,6 @@ public class PhotoVehicule {
     private boolean derniere;
     private Enum<LocalisationVehicule> localisationVehiculeEnum;
     private Location location;
+
+
 }
