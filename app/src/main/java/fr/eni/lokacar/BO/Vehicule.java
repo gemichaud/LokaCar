@@ -1,6 +1,9 @@
 package fr.eni.lokacar.BO;
 
-public class Vehicule {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Vehicule implements Parcelable {
 
     private String immatriculation;
     private String etat;
@@ -21,6 +24,36 @@ public class Vehicule {
         this.modele = modele;
         this.agence = agence;
     }
+
+    protected Vehicule(Parcel in) {
+        immatriculation = in.readString();
+        etat = in.readString();
+        kilometrage = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(immatriculation);
+        dest.writeString(etat);
+        dest.writeInt(kilometrage);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Vehicule> CREATOR = new Creator<Vehicule>() {
+        @Override
+        public Vehicule createFromParcel(Parcel in) {
+            return new Vehicule(in);
+        }
+
+        @Override
+        public Vehicule[] newArray(int size) {
+            return new Vehicule[size];
+        }
+    };
 
     public String getImmatriculation() {
         return immatriculation;
