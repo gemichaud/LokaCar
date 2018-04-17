@@ -11,8 +11,6 @@ class Location {
     private String statut;
     private Client client;
 
-
-
     private Vehicule vehicule;
 
     public Location() {

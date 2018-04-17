@@ -97,7 +97,14 @@ public class EtatDesLieuxActivity extends AppCompatActivity implements OnClickLi
 
        }
 
-       intent.putExtra("photoVehicule", photoVehicule);
+
+        Intent intt = new Intent(EtatDesLieuxActivity.this, DetailEDLActivity.class);
+        //based on item add info to intent
+        intt.putExtra("photoVehicule", photoVehicule);
+        intt.putExtra("vehicule", vehicule);
+        startActivity(intt);
+
+
 
 
 
