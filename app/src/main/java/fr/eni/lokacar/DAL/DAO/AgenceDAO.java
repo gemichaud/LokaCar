@@ -29,6 +29,9 @@ public class AgenceDAO {
         locaCarDB = new LocaCarDB(context, NOM_BASE, null, version);
     }
 
+
+
+
     public void insertAgence( Agence a ){
 
         ContentValues c = getContentValues(a);
@@ -39,7 +42,7 @@ public class AgenceDAO {
 
     private ContentValues getContentValues(Agence a) {
         ContentValues c = new ContentValues();
-        c.put(ConstanteDB.A_ID , a.iD.toString());
+        c.put(ConstanteDB.A_ID , a.getiD().toString());
         c.put(ConstanteDB.A_ADRESSE, a.getAdresse() );
         c.put(ConstanteDB.A_VILLE, a.getVille());
         c.put(ConstanteDB.A_ID_GERANT , a.getGerant().getiD().toString());
