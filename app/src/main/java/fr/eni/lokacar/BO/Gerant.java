@@ -2,7 +2,7 @@ package fr.eni.lokacar.BO;
 
 import java.util.UUID;
 
-class Gerant {
+ public class Gerant {
 
     public UUID iD;
     public String nom;
