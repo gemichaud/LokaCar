@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import java.security.NoSuchAlgorithmException;
 
+import fr.eni.lokacar.BLL.GerantManager;
 import fr.eni.lokacar.BO.Gerant;
 import fr.eni.lokacar.DAL.DAO.GerantDAO;
 
@@ -28,10 +29,11 @@ public class AccueilActivity extends AppCompatActivity {
                 String login = txtLogin.getText().toString();
                 String password = txtPassword.getText().toString();
 
-                GerantDAO gerantDAO = new GerantDAO(AccueilActivity.this);
+                GerantManager gerantManager = new GerantManager();
+
                 Gerant g;
                 try {
-                    g = gerantDAO.connect( login,password);
+                    g = gerantManager.connect(AccueilActivity.this, login, password);
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
