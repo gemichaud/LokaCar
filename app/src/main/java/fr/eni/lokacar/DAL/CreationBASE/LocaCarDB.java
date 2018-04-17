@@ -64,7 +64,7 @@ public class LocaCarDB extends SQLiteOpenHelper {
             + ConstanteDB.V_CNIT_VE + " TEXT ,"
             + ConstanteDB.V_PRIX_JOUR + " REAL , "
             +  ConstanteDB.V_STATUT + " TEXT ,"
-            + ConstanteDB.V_AGENCE_ID + "TEXT ,"
+            + ConstanteDB.V_AGENCE_ID + " TEXT ,"
             + ""
             + " FOREIGN KEY( " + ConstanteDB.V_CNIT_VE  +") REFERENCES  " + ConstanteDB.MODELES  +"( "+  ConstanteDB.MO_CNIT   + " ),"
             + " FOREIGN KEY( " + ConstanteDB.V_AGENCE_ID  +") REFERENCES  " + ConstanteDB.AGENCES  +"( "+  ConstanteDB.A_ID   + " ))";

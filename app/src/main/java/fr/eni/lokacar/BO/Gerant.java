@@ -4,11 +4,11 @@ import java.util.UUID;
 
  public class Gerant {
 
-    public UUID iD;
-    public String nom;
-    public String prenom;
-    public String login;
-    public  String motDePasse;
+    private UUID iD;
+    private String nom;
+    private String prenom;
+    private String login;
+    private   String motDePasse;
 
 
     public Gerant() {

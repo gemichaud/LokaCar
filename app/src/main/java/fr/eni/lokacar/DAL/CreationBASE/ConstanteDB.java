@@ -68,7 +68,7 @@ public final class ConstanteDB {
     public static final String PhV_ID = "ID";
     public static final String PhV_PATH  = "PATH";
     public static final String PhV_DERNIERE = "DERNIERE";
-    public static final String PhV_Localisation  = "PATH";
+    public static final String PhV_Localisation  = "LOCALISATION";
     public static final String PhV_ID_LOC = "ID_LOCATION";
 
     //CONSTANTES PHOTO Client
