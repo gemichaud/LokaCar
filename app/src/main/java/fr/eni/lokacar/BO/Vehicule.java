@@ -3,7 +3,7 @@ package fr.eni.lokacar.BO;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Vehicule implements Parcelable {
+public class Vehicule implements Parcelable{
 
     private String immatriculation;
     private String etat;
@@ -29,6 +29,9 @@ public class Vehicule implements Parcelable {
         immatriculation = in.readString();
         etat = in.readString();
         kilometrage = in.readInt();
+        modele = in.readParcelable(Modele.class.getClassLoader());
+        agence = in.readParcelable(Agence.class.getClassLoader());
+        prixJournalier = in.readInt();
     }
 
     @Override
@@ -36,6 +39,9 @@ public class Vehicule implements Parcelable {
         dest.writeString(immatriculation);
         dest.writeString(etat);
         dest.writeInt(kilometrage);
+        dest.writeParcelable(modele, flags);
+        dest.writeParcelable(agence, flags);
+        dest.writeInt(prixJournalier);
     }
 
     @Override

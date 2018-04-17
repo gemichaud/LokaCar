@@ -1,8 +1,11 @@
 package fr.eni.lokacar.BO;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class Facture {
+public class Facture implements Parcelable{
 
     private Date dateFinReel;
     private Location location;
@@ -16,6 +19,34 @@ public class Facture {
         this.location = location;
         this.montant = montant;
     }
+
+    protected Facture(Parcel in) {
+        location = in.readParcelable(Location.class.getClassLoader());
+        montant = in.readDouble();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(location, flags);
+        dest.writeDouble(montant);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Facture> CREATOR = new Creator<Facture>() {
+        @Override
+        public Facture createFromParcel(Parcel in) {
+            return new Facture(in);
+        }
+
+        @Override
+        public Facture[] newArray(int size) {
+            return new Facture[size];
+        }
+    };
 
     public Date getDateFinReel() {
         return dateFinReel;

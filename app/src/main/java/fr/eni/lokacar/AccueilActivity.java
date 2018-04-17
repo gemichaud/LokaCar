@@ -7,9 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 import fr.eni.lokacar.BLL.GerantManager;
+import fr.eni.lokacar.BO.Agence;
 import fr.eni.lokacar.BO.Gerant;
+import fr.eni.lokacar.DAL.DAO.AgenceDAO;
 import fr.eni.lokacar.DAL.DAO.GerantDAO;
 
 public class AccueilActivity extends AppCompatActivity {
@@ -31,12 +34,16 @@ public class AccueilActivity extends AppCompatActivity {
 
                 GerantManager gerantManager = new GerantManager();
 
-                Gerant g;
+                Agence a= null;
                 try {
-                    g = gerantManager.connect(AccueilActivity.this, login, password);
+                    a = gerantManager.connect(AccueilActivity.this, login, password);
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
+
+
+
+
 
             }
         });

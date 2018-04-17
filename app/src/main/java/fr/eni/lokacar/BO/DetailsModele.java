@@ -1,6 +1,9 @@
 package fr.eni.lokacar.BO;
 
-public class DetailsModele {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class DetailsModele implements Parcelable{
 
     private String cNIT;
     private String modeleCommercial;
@@ -20,6 +23,42 @@ public class DetailsModele {
         this.gamme = gamme;
         this.carrosserie = carrosserie;
     }
+
+    protected DetailsModele(Parcel in) {
+        cNIT = in.readString();
+        modeleCommercial = in.readString();
+        designation = in.readString();
+        boite = in.readString();
+        gamme = in.readString();
+        carrosserie = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(cNIT);
+        dest.writeString(modeleCommercial);
+        dest.writeString(designation);
+        dest.writeString(boite);
+        dest.writeString(gamme);
+        dest.writeString(carrosserie);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<DetailsModele> CREATOR = new Creator<DetailsModele>() {
+        @Override
+        public DetailsModele createFromParcel(Parcel in) {
+            return new DetailsModele(in);
+        }
+
+        @Override
+        public DetailsModele[] newArray(int size) {
+            return new DetailsModele[size];
+        }
+    };
 
     public String getcNIT() {
         return cNIT;

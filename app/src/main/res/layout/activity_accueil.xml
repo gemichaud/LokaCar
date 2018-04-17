@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/login_accueil"
-        android:text="uizeihiuzheuifizheiuhze"/>
+        android:text="test"/>
 
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/pass_accueil"
         android:inputType="textPassword"
-        android:text="iuzhuihiuzfhihzfeihizehf"/>
+        android:text="test"/>
 
     <LinearLayout
         android:layout_width="match_parent"

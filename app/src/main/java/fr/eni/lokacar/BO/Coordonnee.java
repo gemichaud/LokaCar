@@ -1,8 +1,11 @@
 package fr.eni.lokacar.BO;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.lang.ref.SoftReference;
 
-public class Coordonnee {
+public class Coordonnee implements Parcelable {
 
     private String telephone;
     private String email;
@@ -19,6 +22,38 @@ public class Coordonnee {
         this.adresse = adresse;
         this.ville = ville;
     }
+
+    protected Coordonnee(Parcel in) {
+        telephone = in.readString();
+        email = in.readString();
+        adresse = in.readString();
+        ville = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(telephone);
+        dest.writeString(email);
+        dest.writeString(adresse);
+        dest.writeString(ville);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Coordonnee> CREATOR = new Creator<Coordonnee>() {
+        @Override
+        public Coordonnee createFromParcel(Parcel in) {
+            return new Coordonnee(in);
+        }
+
+        @Override
+        public Coordonnee[] newArray(int size) {
+            return new Coordonnee[size];
+        }
+    };
 
     public String getTelephone() {
         return telephone;

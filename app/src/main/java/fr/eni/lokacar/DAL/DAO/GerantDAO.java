@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
+import fr.eni.lokacar.BO.Agence;
 import fr.eni.lokacar.BO.Gerant;
 import fr.eni.lokacar.DAL.CreationBASE.ConstanteDB;
 import fr.eni.lokacar.DAL.CreationBASE.LocaCarDB;
@@ -19,6 +20,18 @@ public class GerantDAO {
     private static final int version = 1;
     private SQLiteDatabase db;
     private LocaCarDB locaCarDB;
+    private final String CONNECT = " SELECT  " +
+            "g." + ConstanteDB.G_ID + " ," +
+            "g." + ConstanteDB.G_LOGIN +", " +
+            "g."+ConstanteDB.G_PRENOM + ", " +
+            "g."+ConstanteDB.G_NOM + ", " +
+            "g." + ConstanteDB.G_PASSWORD + ", " +
+            "a." + ConstanteDB.A_ADRESSE + "," +
+            "a."+ConstanteDB.A_ID +" as agenceID,"+
+            "a."+ConstanteDB.A_VILLE +
+            "  FROM " + ConstanteDB.GERANTS + " g "
+            + "INNER JOIN "+ ConstanteDB.AGENCES +" a  ON a."+ConstanteDB.A_ID_GERANT+"=g."+ConstanteDB.G_ID
+            + " WHERE g."+ ConstanteDB.G_LOGIN +"=?";
 
 
     public void openForWrite(){
@@ -42,22 +55,13 @@ public class GerantDAO {
     }
 
 
-    public Gerant connect(String login, String password) throws NoSuchAlgorithmException {
+    public Agence connect(String login, String password) throws NoSuchAlgorithmException {
 
         openForRead();
-        Cursor c  = db.query(ConstanteDB.GERANTS ,new String[]{
-                        ConstanteDB.G_ID,
-                        ConstanteDB.G_LOGIN,
-                        ConstanteDB.G_NOM,
-                        ConstanteDB.G_PRENOM,
-                        ConstanteDB.G_PASSWORD},
-                ConstanteDB.G_LOGIN+ " = " + "'"+login+"'" ,
-                null,
-                null,
-                null,
-                null);
+        Cursor c  = db.rawQuery(CONNECT, new String[]{login });
 
         Gerant g = new Gerant();
+        Agence a = new Agence();
         if (c.moveToNext()){
             if(PasswordTools.checkLogin(password,c.getString(c.getColumnIndex(ConstanteDB.G_PASSWORD))))
             {
@@ -67,16 +71,21 @@ public class GerantDAO {
                 g.setNom(c.getString(c.getColumnIndex(ConstanteDB.G_NOM)));
                 g.setiD(UUID.fromString(c.getString(c.getColumnIndex(ConstanteDB.G_ID))));
                 g.setLogin(c.getString(c.getColumnIndex(ConstanteDB.G_LOGIN)));
+
+                a.setGerant(g);
+                a.setVille(c.getString(c.getColumnIndex(ConstanteDB.A_VILLE)));
+                a.setiD(UUID.fromString(c.getString(c.getColumnIndex("agenceID"))));
+                a.setAdresse(c.getString(c.getColumnIndex(ConstanteDB.A_ADRESSE)));
             }
         }
 
-        if( g.getLogin()== null){
+        if( a.getVille() == null){
             System.out.println("Pas OK");
             return null;
         }
         else {
             System.out.println("OK");
-            return g;
+            return a;
         }
     }
 

@@ -1,9 +1,12 @@
 package fr.eni.lokacar.BO;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 import java.util.UUID;
 
-class Location {
+public class Location implements Parcelable{
 
     private UUID iD;
     private Date dateDebut;
@@ -23,6 +26,38 @@ class Location {
         this.statut = statut;
         this.vehicule = vehicule;
     }
+
+    protected Location(Parcel in) {
+        iD = UUID.fromString(in.readString());
+        statut = in.readString();
+        client = in.readParcelable(Client.class.getClassLoader());
+        vehicule = in.readParcelable(Vehicule.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(iD.toString());
+        dest.writeString(statut);
+        dest.writeParcelable(client, flags);
+        dest.writeParcelable(vehicule, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Location> CREATOR = new Creator<Location>() {
+        @Override
+        public Location createFromParcel(Parcel in) {
+            return new Location(in);
+        }
+
+        @Override
+        public Location[] newArray(int size) {
+            return new Location[size];
+        }
+    };
 
     public UUID getiD() {
         return iD;

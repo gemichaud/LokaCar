@@ -1,8 +1,11 @@
 package fr.eni.lokacar.BO;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.UUID;
 
- public class Gerant {
+ public class Gerant implements Parcelable{
 
     private UUID iD;
     private String nom;
@@ -29,7 +32,41 @@ import java.util.UUID;
         this.motDePasse = motDePasse;
     }
 
-    public UUID getiD() {
+     protected Gerant(Parcel in) {
+        iD = UUID.fromString(in.readString());
+         nom = in.readString();
+         prenom = in.readString();
+         login = in.readString();
+         motDePasse = in.readString();
+     }
+
+     @Override
+     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(iD.toString());
+         dest.writeString(nom);
+         dest.writeString(prenom);
+         dest.writeString(login);
+         dest.writeString(motDePasse);
+     }
+
+     @Override
+     public int describeContents() {
+         return 0;
+     }
+
+     public static final Creator<Gerant> CREATOR = new Creator<Gerant>() {
+         @Override
+         public Gerant createFromParcel(Parcel in) {
+             return new Gerant(in);
+         }
+
+         @Override
+         public Gerant[] newArray(int size) {
+             return new Gerant[size];
+         }
+     };
+
+     public UUID getiD() {
         return iD;
     }
 

@@ -1,6 +1,9 @@
 package fr.eni.lokacar.BO;
 
-public class PhotoVehicule {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class PhotoVehicule implements Parcelable {
 
     private int id;
     private String path;
@@ -28,6 +31,7 @@ public class PhotoVehicule {
         path = in.readString();
         description = in.readString();
         derniere = in.readByte() != 0;
+        location = in.readParcelable(Location.class.getClassLoader());
     }
 
     @Override
@@ -36,6 +40,7 @@ public class PhotoVehicule {
         dest.writeString(path);
         dest.writeString(description);
         dest.writeByte((byte) (derniere ? 1 : 0));
+        dest.writeParcelable(location, flags);
     }
 
     @Override

@@ -1,8 +1,11 @@
 package fr.eni.lokacar.BO;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.UUID;
 
-public class Client {
+public class Client implements Parcelable{
     private UUID iD;
     private String nom;
     private String prenom;
@@ -23,6 +26,37 @@ public class Client {
     }
 
 
+    protected Client(Parcel in) {
+        iD = UUID.fromString(in.readString());
+        nom = in.readString();
+        prenom = in.readString();
+        coordonee = in.readParcelable(Coordonnee.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(iD.toString());
+        dest.writeString(nom);
+        dest.writeString(prenom);
+        dest.writeParcelable(coordonee, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Client> CREATOR = new Creator<Client>() {
+        @Override
+        public Client createFromParcel(Parcel in) {
+            return new Client(in);
+        }
+
+        @Override
+        public Client[] newArray(int size) {
+            return new Client[size];
+        }
+    };
 
     public String getNom() {
         return nom;

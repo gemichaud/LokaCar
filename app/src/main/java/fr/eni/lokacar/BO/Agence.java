@@ -1,13 +1,16 @@
 package fr.eni.lokacar.BO;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.UUID;
 
-public class Agence {
+public class Agence implements Parcelable {
 
-    public UUID iD;
-    public String ville;
-    public String Adresse;
-    public Gerant gerant;
+    private UUID iD;
+    private String ville;
+    private String Adresse;
+    private Gerant gerant;
 
 
     public Agence() {
@@ -25,6 +28,38 @@ public class Agence {
         Adresse = adresse;
         this.gerant = gerant;
     }
+
+    protected Agence(Parcel in) {
+        iD = UUID.fromString(in.readString());
+        ville = in.readString();
+        Adresse = in.readString();
+        gerant = in.readParcelable(Gerant.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(iD.toString());
+        dest.writeString(ville);
+        dest.writeString(Adresse);
+        dest.writeParcelable(gerant, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Agence> CREATOR = new Creator<Agence>() {
+        @Override
+        public Agence createFromParcel(Parcel in) {
+            return new Agence(in);
+        }
+
+        @Override
+        public Agence[] newArray(int size) {
+            return new Agence[size];
+        }
+    };
 
     public UUID getiD() {
         return iD;

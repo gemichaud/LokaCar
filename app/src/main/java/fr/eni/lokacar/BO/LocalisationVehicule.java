@@ -1,6 +1,6 @@
 package fr.eni.lokacar.BO;
 
-public enum LocalisationVehicule {
+public enum LocalisationVehicule  {
 
     Avant,
     AvantGauche,
