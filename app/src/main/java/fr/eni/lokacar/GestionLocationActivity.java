@@ -11,6 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.lokacar.Adapter.LocationAdapter;
 import fr.eni.lokacar.BLL.LocationManager;
 import fr.eni.lokacar.BO.Agence;
 import fr.eni.lokacar.BO.Location;
