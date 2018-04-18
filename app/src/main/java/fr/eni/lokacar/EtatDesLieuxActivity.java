@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import fr.eni.lokacar.BO.LocalisationVehicule;
+import fr.eni.lokacar.BO.Location;
 import fr.eni.lokacar.BO.PhotoVehicule;
 import fr.eni.lokacar.BO.Vehicule;
 
@@ -23,7 +24,7 @@ public class EtatDesLieuxActivity extends AppCompatActivity implements OnClickLi
     private FloatingActionButton floatBtnAvDroit;
     private FloatingActionButton floatBtnInterieur;
     private Intent intent;
-    private Vehicule vehicule;
+    private Location location;
 
 
     @Override
@@ -65,7 +66,7 @@ public class EtatDesLieuxActivity extends AppCompatActivity implements OnClickLi
 
         intent = getIntent();
 
-        vehicule = intent.getParcelableExtra("vehicule");
+        location = intent.getParcelableExtra("location");
 
     }
 
@@ -101,7 +102,7 @@ public class EtatDesLieuxActivity extends AppCompatActivity implements OnClickLi
         Intent intt = new Intent(EtatDesLieuxActivity.this, DetailEDLActivity.class);
         //based on item add info to intent
         intt.putExtra("photoVehicule", photoVehicule);
-        intt.putExtra("vehicule", vehicule);
+        intt.putExtra("vehicule", location.getVehicule());
         startActivity(intt);
 
 

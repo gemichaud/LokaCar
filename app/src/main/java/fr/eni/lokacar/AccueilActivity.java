@@ -28,8 +28,8 @@ public class AccueilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_accueil);
 
 
-        JeuxDessai jd = new JeuxDessai();
-        jd.insertGerant(AccueilActivity.this);
+       /* JeuxDessai jd = new JeuxDessai();
+        jd.insertGerant(AccueilActivity.this);*/
         Button btnLog = findViewById(R.id.connect_accueil);
         btnLog.setOnClickListener(new View.OnClickListener() {
             @Override
