@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import fr.eni.lokacar.BO.Agence;
 import fr.eni.lokacar.BO.Gerant;
+import fr.eni.lokacar.DAL.DAO.AgenceDAO;
 import fr.eni.lokacar.DAL.DAO.GerantDAO;
 
 public class JeuxDessai {
@@ -31,6 +32,8 @@ public class JeuxDessai {
         a.setAdresse("3 rue de toto");
         a.setVille("Nantes");
         a.setGerant(g);
+        AgenceDAO adao = new AgenceDAO(c);
+        adao.insertAgence(a);
 
     }
 

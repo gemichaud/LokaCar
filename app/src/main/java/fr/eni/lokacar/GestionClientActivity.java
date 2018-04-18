@@ -1,5 +1,8 @@
 package fr.eni.lokacar;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -24,6 +27,35 @@ public class GestionClientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestion_client);
 
+        final List<Client> clients = getClients();
+
+        rV = findViewById(R.id.list_clients);
+        adapter = new ClientRecyclerViewAdapter(clients, new OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+
+                System.out.println(clients.get(position).getNom());
+            }
+        });
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GestionClientActivity.this);
+        rV.setLayoutManager(layoutManager);
+        rV.setItemAnimator(new DefaultItemAnimator());
+        rV.setAdapter(adapter);
+
+
+        FloatingActionButton addCli = findViewById(R.id.btn_add_cli);
+        addCli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(GestionClientActivity.this, AjoutClientActivity.class);
+                GestionClientActivity.this.startActivity(i);
+            }
+        });
+
+    }
+
+    @NonNull
+    private List<Client> getClients() {
         Client c = new Client();
         c.setNom("toto");
         c.setPrenom("tutu");
@@ -55,19 +87,6 @@ public class GestionClientActivity extends AppCompatActivity {
         clients.add(c2);
         clients.add(c3);
         clients.add(c4);
-
-        rV = findViewById(R.id.list_clients);
-        adapter = new ClientRecyclerViewAdapter(clients, new OnItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-
-                System.out.println(clients.get(position).getNom());
-            }
-        });
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GestionClientActivity.this);
-        rV.setLayoutManager(layoutManager);
-        rV.setItemAnimator(new DefaultItemAnimator());
-        rV.setAdapter(adapter);
-
+        return clients;
     }
 }
