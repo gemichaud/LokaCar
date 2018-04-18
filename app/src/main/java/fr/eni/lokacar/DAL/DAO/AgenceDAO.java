@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.UUID;
+
 import fr.eni.lokacar.BO.Agence;
 import fr.eni.lokacar.BO.Gerant;
 import fr.eni.lokacar.DAL.CreationBASE.ConstanteDB;
@@ -43,7 +45,12 @@ public class AgenceDAO {
 
     private ContentValues getContentValues(Agence a) {
         ContentValues c = new ContentValues();
-        c.put(ConstanteDB.A_ID , a.getiD().toString());
+        if(a.getiD() == null ) {
+            a.setiD(UUID.randomUUID());
+        }
+
+        c.put(ConstanteDB.A_ID,a.getiD().toString());
+
         c.put(ConstanteDB.A_ADRESSE, a.getAdresse() );
         c.put(ConstanteDB.A_VILLE, a.getVille());
         c.put(ConstanteDB.A_ID_GERANT , a.getGerant().getiD().toString());

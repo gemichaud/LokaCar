@@ -96,9 +96,11 @@ public class GerantDAO {
 
     private ContentValues getContentValues(Gerant g) {
         ContentValues c = new ContentValues();
+        if (g.getiD() == null){
+            g.setiD(UUID.randomUUID());
+        }
 
-
-        c.put(ConstanteDB.G_ID, UUID.randomUUID().toString());
+        c.put(ConstanteDB.G_ID, g.getiD().toString());
         c.put(ConstanteDB.G_LOGIN , g.getLogin());
         c.put(ConstanteDB.G_NOM, g.getNom());
         c.put(ConstanteDB.G_PRENOM, g.getPrenom());

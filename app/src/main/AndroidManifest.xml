@@ -26,28 +26,22 @@
         </provider>
 
         <activity android:name=".AccueilActivity">
-
-            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
         </activity>
+        <activity
+            android:name=".MenuActivity"
+            android:parentActivityName=".AccueilActivity" />
         <activity android:name=".EtatDesLieuxActivity" />
         <activity
             android:name=".DetailEDLActivity"
             android:parentActivityName=".EtatDesLieuxActivity" />
-        <activity android:name=".GestionLocationActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".DetailLocationActivity" />
-        <activity android:name=".AjoutLocationActivity"></activity>
+        <activity android:name=".GestionLocationActivity" />
+        <activity android:name=".GestionClientActivity" />
+        <activity android:name=".AjoutClientActivity"></activity>
     </application>
 
 </manifest>
