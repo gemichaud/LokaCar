@@ -8,6 +8,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.lokacar.BLL.LocationManager;
 import fr.eni.lokacar.BO.Location;
 import fr.eni.lokacar.Tools.JeuxDessai;
 import fr.eni.lokacar.Adapter.LocationAdapter;
@@ -29,12 +30,18 @@ public class GestionLocationActivity extends AppCompatActivity {
          */
 
 
+        lstView = findViewById(R.id.lst);
         listLocations = new ArrayList<Location>();
 
 
-        JeuxDessai jd = new JeuxDessai();
+        /*JeuxDessai jd = new JeuxDessai();
 
         listLocations = jd.getLocations(this);
+
+*/
+        LocationManager locationManager = new LocationManager();
+        listLocations = locationManager.selectAllEC(GestionLocationActivity.this);
+
 
         adapter = new LocationAdapter(
                 GestionLocationActivity.this,

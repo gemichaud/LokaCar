@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import fr.eni.lokacar.BO.Location;
@@ -52,10 +53,11 @@ public class LocationAdapter extends ArrayAdapter<Location> {
 
         Location location = getItem(position);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
         viewHolder.avClient.setText(location.getClient().getPrenom() + " " + location.getClient().getNom());
         viewHolder.avImmat.setText(location.getVehicule().getImmatriculation());
-        viewHolder.avDateDebut.setText(location.getDateDebut().toString());
-        viewHolder.avDateFin.setText(location.getDateFinPrevu().toString());
+        viewHolder.avDateDebut.setText(sdf.format(location.getDateDebut()));
+        viewHolder.avDateFin.setText(sdf.format(location.getDateFinPrevu()));
 
         return convertView;
 

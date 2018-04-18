@@ -14,11 +14,12 @@ import fr.eni.lokacar.BO.Marque;
 import fr.eni.lokacar.BO.Modele;
 import fr.eni.lokacar.DAL.CreationBASE.ConstanteDB;
 import fr.eni.lokacar.DAL.CreationBASE.LocaCarDB;
+import fr.eni.lokacar.DAL.CreationBASE.VersionDB;
 
 public class ModeleDAO {
 
-    private static final String NOM_BASE = "lokacar.db";
-    private static final int version = 1;
+    private static final String NOM_BASE = VersionDB.NOM_BASE;
+    private static final int version = VersionDB.VERSION;
     private SQLiteDatabase db;
     private LocaCarDB locaCarDB;
     private Context context;
@@ -87,6 +88,7 @@ public class ModeleDAO {
         c.put(ConstanteDB.MO_CNIT , modele.getcNIT());
         c.put(ConstanteDB.MO_ID_MARQUE, modele.getMarque().getId());
         c.put(ConstanteDB.MO_NOM, modele.getNom());
+        c.put(ConstanteDB.MO_PATH_PHOTO, "zfeuihh");
 
         return  c;
     }
