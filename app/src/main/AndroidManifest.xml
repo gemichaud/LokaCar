@@ -42,6 +42,7 @@
         <activity android:name=".GestionLocationActivity" />
         <activity android:name=".GestionClientActivity" />
         <activity android:name=".AjoutClientActivity"></activity>
+        <activity android:name=".AjoutLocationActivity"></activity>
     </application>
 
 </manifest>

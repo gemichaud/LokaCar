@@ -17,9 +17,11 @@ import fr.eni.lokacar.BO.Location;
 import fr.eni.lokacar.BO.Marque;
 import fr.eni.lokacar.BO.Modele;
 import fr.eni.lokacar.BO.Vehicule;
+import fr.eni.lokacar.DAL.DAO.AgenceDAO;
 import fr.eni.lokacar.DAL.DAO.GerantDAO;
 import fr.eni.lokacar.DAL.DAO.MarqueDAO;
 import fr.eni.lokacar.DAL.DAO.ModeleDAO;
+import fr.eni.lokacar.DAL.DAO.VehiculeDAO;
 
 public class JeuxDessai {
 
@@ -37,7 +39,7 @@ public class JeuxDessai {
 
         this.g = new Gerant();
         g.setMotDePasse("test");
-        g.setLogin("test");
+        g.setLogin("test2");
         g.setiD(UUID.randomUUID());
         g.setPrenom("test");
         g.setNom("test");
@@ -54,6 +56,9 @@ public class JeuxDessai {
         a.setAdresse("3 rue de toto");
         a.setVille("Nantes");
         a.setGerant(g);
+
+        AgenceDAO agenceDAO = new AgenceDAO(c);
+        agenceDAO.insertAgence(a);
 
     }
 
@@ -98,6 +103,10 @@ public class JeuxDessai {
         vehicule.setAgence(a);
         insertModele(c);
         vehicule.setModele(modele);
+        vehicule.setAgence(a);
+
+        VehiculeDAO vehiculeDAO = new VehiculeDAO(c);
+        vehiculeDAO.insertVehicule(vehicule);
 
     }
 

@@ -7,6 +7,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,8 +21,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import fr.eni.lokacar.Adapter.Client.ClientRecyclerViewAdapter;
+import fr.eni.lokacar.Adapter.Client.ClientSpinnerAdapter;
+import fr.eni.lokacar.Adapter.LocationAdapter;
+import fr.eni.lokacar.Adapter.OnItemClickListener;
+import fr.eni.lokacar.Adapter.Vehicule.VehiculeSpinnerAdapter;
+import fr.eni.lokacar.BLL.ClientManager;
 import fr.eni.lokacar.BO.Agence;
+import fr.eni.lokacar.BO.Client;
+import fr.eni.lokacar.BO.Vehicule;
+import fr.eni.lokacar.DAL.DAO.ClientDAO;
 
 public class AjoutLocationActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -32,6 +45,12 @@ public class AjoutLocationActivity extends AppCompatActivity implements View.OnC
     private FloatingActionButton floatBtnDateDebut;
     private FloatingActionButton floatBtndateFin;
     private Button eregistrer;
+
+    private List<Client> listClients;
+    private List<Vehicule> listVehicules;
+
+    private ClientSpinnerAdapter adapterClient;
+    private VehiculeSpinnerAdapter adapterVehicule;
 
     private Intent intent;
 
@@ -53,20 +72,26 @@ public class AjoutLocationActivity extends AppCompatActivity implements View.OnC
         floatBtndateFin = findViewById(R.id.floatBtnPickDateFin);
 
 
+        ClientManager clientManager = new ClientManager(AjoutLocationActivity.this);
+        listClients = clientManager.selectAllClient();
 
 
+        adapterClient = new ClientSpinnerAdapter(
+                AjoutLocationActivity.this,
+                android.R.layout.simple_spinner_item,
+                listClients);
+        adapterClient.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        spinnerClients.setAdapter(adapterClient);
 
-     /*   ArrayAdapter<String> dataAdapterClients = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listClients);
-        dataAdapterClients.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerClients.setAdapter(dataAdapterClients);
+        adapterVehicule = new VehiculeSpinnerAdapter(
+                AjoutLocationActivity.this,
+                android.R.layout.simple_spinner_item,
+                listVehicules);
+        adapterVehicule.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        spinnerVehicules.setAdapter(adapterVehicule);
 
-        ArrayAdapter<String> dataAdapterVehicules = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listVehicules);
-        dataAdapterVehicules.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerVehicules.setAdapter(dataAdapterVehicules);*/
 
     }
 
