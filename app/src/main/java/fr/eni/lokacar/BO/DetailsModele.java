@@ -11,17 +11,19 @@ public class DetailsModele implements Parcelable{
     private String boite;
     private String gamme;
     private String carrosserie;
+    private String carburant;
 
     public DetailsModele() {
     }
 
-    public DetailsModele(String cNIT, String modeleCommercial, String designation, String boite, String gamme, String carrosserie) {
+    public DetailsModele(String cNIT, String modeleCommercial, String designation, String boite, String gamme, String carrosserie, String carburant) {
         this.cNIT = cNIT;
         this.modeleCommercial = modeleCommercial;
         this.designation = designation;
         this.boite = boite;
         this.gamme = gamme;
         this.carrosserie = carrosserie;
+        this.carburant = carburant;
     }
 
     protected DetailsModele(Parcel in) {
@@ -31,6 +33,7 @@ public class DetailsModele implements Parcelable{
         boite = in.readString();
         gamme = in.readString();
         carrosserie = in.readString();
+        carburant = in.readString();
     }
 
     @Override
@@ -41,6 +44,7 @@ public class DetailsModele implements Parcelable{
         dest.writeString(boite);
         dest.writeString(gamme);
         dest.writeString(carrosserie);
+        dest.writeString(carburant);
     }
 
     @Override
@@ -108,6 +112,14 @@ public class DetailsModele implements Parcelable{
         this.carrosserie = carrosserie;
     }
 
+    public String getCarburant() {
+        return carburant;
+    }
+
+    public void setCarburant(String carburant) {
+        this.carburant = carburant;
+    }
+
     @Override
     public String toString() {
         return "DetailsModele{" +
@@ -117,6 +129,7 @@ public class DetailsModele implements Parcelable{
                 ", boite='" + boite + '\'' +
                 ", gamme='" + gamme + '\'' +
                 ", carrosserie='" + carrosserie + '\'' +
+                ", carburant='" + carburant + '\'' +
                 '}';
     }
 }

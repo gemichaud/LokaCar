@@ -66,6 +66,7 @@ public class VehiculeDAO {
             vehicule.setKilometrage(c.getInt(c.getColumnIndex(ConstanteDB.V_KM)));
             vehicule.setEtat(c.getString(c.getColumnIndex(ConstanteDB.V_STATUT)));
             vehicule.setPrixJournalier(c.getInt(c.getColumnIndex(ConstanteDB.V_PRIX_JOUR)));
+            c.getColumnIndex(ConstanteDB.V_CNIT_VE);
 
             listVehicule.add(vehicule);
         }
