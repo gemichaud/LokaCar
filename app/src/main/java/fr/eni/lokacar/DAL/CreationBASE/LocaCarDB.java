@@ -96,7 +96,7 @@ public class LocaCarDB extends SQLiteOpenHelper {
 
     private static final String CREATE_TA_CLI=
             " CREATE TABLE " + ConstanteDB.CLIENTS
-            +" ( " + ConstanteDB.CLI_ID + "TEXT PRIMARY KEY ,"
+            +" ( " + ConstanteDB.CLI_ID + " TEXT PRIMARY KEY ,"
             + ConstanteDB.CLI_NOM + " TEXT NOT NULL ,"
             + ConstanteDB.CLI_PRENOM + " TEXT NOT NULL )";
 
@@ -149,6 +149,8 @@ public class LocaCarDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+
 
     }
 }

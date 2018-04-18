@@ -18,6 +18,7 @@ import fr.eni.lokacar.BO.Gerant;
 import fr.eni.lokacar.DAL.DAO.AgenceDAO;
 import fr.eni.lokacar.DAL.DAO.GerantDAO;
 import fr.eni.lokacar.Tools.DateTools;
+import fr.eni.lokacar.Tools.JeuxDessai;
 
 public class AccueilActivity extends AppCompatActivity {
 
@@ -27,6 +28,8 @@ public class AccueilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_accueil);
 
 
+        JeuxDessai jd = new JeuxDessai();
+        jd.insertGerant(AccueilActivity.this);
         Button btnLog = findViewById(R.id.connect_accueil);
         btnLog.setOnClickListener(new View.OnClickListener() {
             @Override
