@@ -12,12 +12,14 @@ import fr.eni.lokacar.BO.Agence;
 import fr.eni.lokacar.BO.Gerant;
 import fr.eni.lokacar.DAL.CreationBASE.ConstanteDB;
 import fr.eni.lokacar.DAL.CreationBASE.LocaCarDB;
+import fr.eni.lokacar.DAL.CreationBASE.VersionDB;
 import fr.eni.lokacar.Tools.PasswordTools;
 
 public class GerantDAO {
 
-    private static final String NOM_BASE = "lokacar.db";
-    private static final int version = 1;
+
+    private static final String NOM_BASE = VersionDB.NOM_BASE;
+    private static final int version = VersionDB.VERSION;
     private SQLiteDatabase db;
     private LocaCarDB locaCarDB;
     private final String CONNECT = " SELECT  " +

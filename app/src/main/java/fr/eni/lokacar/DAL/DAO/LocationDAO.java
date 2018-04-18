@@ -19,13 +19,14 @@ import fr.eni.lokacar.BO.Location;
 import fr.eni.lokacar.BO.Vehicule;
 import fr.eni.lokacar.DAL.CreationBASE.ConstanteDB;
 import fr.eni.lokacar.DAL.CreationBASE.LocaCarDB;
+import fr.eni.lokacar.DAL.CreationBASE.VersionDB;
 
 
 public class LocationDAO {
 
 
-    private static final String NOM_BASE = "lokacar.db";
-    private static final int version = 1;
+    private static final String NOM_BASE = VersionDB.NOM_BASE;
+    private static final int version = VersionDB.VERSION;
     private SQLiteDatabase db;
     private LocaCarDB locaCarDB;
     private final String SELECTALL = " SELECT  " +

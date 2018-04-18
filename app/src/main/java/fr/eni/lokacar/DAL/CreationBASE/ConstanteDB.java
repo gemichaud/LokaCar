@@ -17,6 +17,7 @@ public final class ConstanteDB {
     public static final String MO_CNIT = "CNIT";
     public static final String MO_NOM= "Nom";
     public static final String MO_ID_MARQUE = "ID_MARQUE";
+    public static final String MO_PATH_PHOTO = "PATH_PHOTO";
 
     //CONSTANTES MARQUES;
     public static final String MARQUES= "MARQUES";

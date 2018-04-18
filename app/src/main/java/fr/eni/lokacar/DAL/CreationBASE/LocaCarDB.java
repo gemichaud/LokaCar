@@ -30,10 +30,10 @@ public class LocaCarDB extends SQLiteOpenHelper {
     private static final String CREATE_TA_MO =
 
             "CREATE TABLE " + ConstanteDB.MODELES
-            +"( " + ConstanteDB.MO_CNIT + " TEXT PRIMARY KEY ,"
+            +" ( " + ConstanteDB.MO_CNIT + " TEXT PRIMARY KEY ,"
             + ConstanteDB.MO_NOM + " TEXT NOT NULL ,"
-            + ConstanteDB.MO_ID_MARQUE + " TEXT NOT NULL ,"
-            + ""
+            + ConstanteDB.MO_ID_MARQUE + " TEXT NOT NULL , "
+            + ConstanteDB.MO_PATH_PHOTO + " TEXT  NOT NULL,"
             + " FOREIGN KEY( " + ConstanteDB.MO_CNIT  +") REFERENCES  " +ConstanteDB.DETAILS_MODELES +"( "+  ConstanteDB.DM_CNIT + " ),"
             + " FOREIGN KEY( " + ConstanteDB.MO_ID_MARQUE  +") REFERENCES  " + ConstanteDB.MARQUES +"( "+   ConstanteDB.MA_ID  + " ))";
 
@@ -74,10 +74,10 @@ public class LocaCarDB extends SQLiteOpenHelper {
     private static final String CREATE_TA_LO="" +
             "CREATE TABLE " + ConstanteDB.LOCATIONS
             + " ( " + ConstanteDB.LOC_ID + " TEXT PRIMARY KEY ,"
-            + ConstanteDB.LOC_DDEBUT + "INTEGER NOT NULL ,"
+            + ConstanteDB.LOC_DDEBUT + " INTEGER NOT NULL ,"
             + ConstanteDB.LOC_DFIN + " INTEGER NOT NULL ,"
             + ConstanteDB.LOC_STATUT + " TEXT NOT NULL ,"
-            + ConstanteDB.LOC_IMMAT_V + "TEXT NOT NULL ,"
+            + ConstanteDB.LOC_IMMAT_V + " TEXT NOT NULL ,"
             + ConstanteDB.LOC_CLI_ID +" TEXT NOT NULL ,"
             +""
             + " FOREIGN KEY( " + ConstanteDB.LOC_ID  +") REFERENCES  " + ConstanteDB.VEHICULES  +"( "+  ConstanteDB.V_IMMAT   + " ),"
@@ -134,6 +134,32 @@ public class LocaCarDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        createTable(db);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        dropTable(db);
+        createTable(db);
+
+    }
+
+    private void dropTable(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE " + ConstanteDB.FACTURES);
+        db.execSQL("DROP TABLE  " +ConstanteDB.PHOTO_VOITURES);
+        db.execSQL("DROP TABLE " + ConstanteDB.COORDONNEES)  ;
+        db.execSQL("DROP TABLE " + ConstanteDB.LOCATIONS);
+        db.execSQL("DROP TABLE " + ConstanteDB.CLIENTS);
+        db.execSQL("DROP TABLE " + ConstanteDB.VEHICULES);
+        db.execSQL("DROP TABLE " + ConstanteDB.AGENCES);
+        db.execSQL("DROP TABLE " + ConstanteDB.GERANTS);
+        db.execSQL("DROP TABLE " + ConstanteDB.MODELES);
+        db.execSQL("DROP TABLE " + ConstanteDB.DETAILS_MODELES);
+        db.execSQL("DROP TABLE " + ConstanteDB.MARQUES);
+    }
+
+    private void createTable(SQLiteDatabase db) {
         db.execSQL(CREATE_TA_MA);
         db.execSQL(CREATE_TA_DM);
         db.execSQL(CREATE_TA_MO);
@@ -145,12 +171,6 @@ public class LocaCarDB extends SQLiteOpenHelper {
         db.execSQL(CREATE_TA_Coo);
         db.execSQL(CREATE_TA_PhV);
         db.execSQL(CREATE_TA_FA);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-
 
     }
 }
