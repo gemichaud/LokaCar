@@ -42,7 +42,8 @@ public class LocationDAO {
             "v."+ConstanteDB.V_CNIT_VE +", "+
             "v."+ConstanteDB.V_KM +", "+
             "v."+ConstanteDB.V_PRIX_JOUR +", "+
-            "v."+ConstanteDB.V_STATUT +
+            "v." + ConstanteDB.V_STATUT + ", " +
+            "v." + ConstanteDB.V_IMMAT +
             "  FROM " + ConstanteDB.LOCATIONS + " l "
             + "INNER JOIN "+ ConstanteDB.CLIENTS +" c  ON c."+ConstanteDB.CLI_ID+"=l."+ConstanteDB.LOC_CLI_ID
             + " INNER JOIN "+ ConstanteDB.VEHICULES +" v  ON v."+ConstanteDB.V_IMMAT+"=l."+ConstanteDB.LOC_IMMAT_V;
@@ -61,12 +62,12 @@ public class LocationDAO {
             "v."+ConstanteDB.V_CNIT_VE +", "+
             "v."+ConstanteDB.V_KM +", "+
             "v."+ConstanteDB.V_PRIX_JOUR +", "+
-            "v."+ConstanteDB.V_STATUT +
+            "v." + ConstanteDB.V_STATUT + ", " +
+            "v." + ConstanteDB.V_IMMAT +
             "  FROM " + ConstanteDB.LOCATIONS + " l "
             + "INNER JOIN "+ ConstanteDB.CLIENTS +" c  ON c."+ConstanteDB.CLI_ID+"=l."+ConstanteDB.LOC_CLI_ID
             + " INNER JOIN "+ ConstanteDB.VEHICULES +" v  ON v."+ConstanteDB.V_IMMAT+"=l."+ConstanteDB.LOC_IMMAT_V
-            + " WHERE l."+ ConstanteDB.LOC_STATUT +"=? "
-            + " AND l."+ConstanteDB.LOC_DFIN+">? ";
+            + " WHERE l." + ConstanteDB.LOC_STATUT + "=? ";
 
 
     public void openForWrite(){
@@ -109,12 +110,11 @@ public class LocationDAO {
 
     public List<Location> selectCurrentLocation(){
         String etat = "EC";
-        Long dateFin = new Date().getTime();
-        String dFStr = dateFin.toString();
+
 
 
         openForRead();
-        Cursor cursor  = db.rawQuery(SELECTCURRENT, new String[]{etat,dFStr});
+        Cursor cursor = db.rawQuery(SELECTCURRENT, new String[]{etat});
         List<Location> listLocation = new ArrayList<Location>();
 
         while (cursor.moveToNext()){

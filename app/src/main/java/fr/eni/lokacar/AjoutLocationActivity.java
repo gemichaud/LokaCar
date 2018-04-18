@@ -7,11 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
@@ -23,16 +19,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import fr.eni.lokacar.Adapter.Client.ClientRecyclerViewAdapter;
 import fr.eni.lokacar.Adapter.Client.ClientSpinnerAdapter;
-import fr.eni.lokacar.Adapter.LocationAdapter;
-import fr.eni.lokacar.Adapter.OnItemClickListener;
 import fr.eni.lokacar.Adapter.Vehicule.VehiculeSpinnerAdapter;
 import fr.eni.lokacar.BLL.ClientManager;
 import fr.eni.lokacar.BO.Agence;
 import fr.eni.lokacar.BO.Client;
 import fr.eni.lokacar.BO.Vehicule;
-import fr.eni.lokacar.DAL.DAO.ClientDAO;
 
 public class AjoutLocationActivity extends AppCompatActivity implements View.OnClickListener{
 

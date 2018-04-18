@@ -88,6 +88,7 @@ public class ModeleDAO {
         c.put(ConstanteDB.MO_CNIT , modele.getcNIT());
         c.put(ConstanteDB.MO_ID_MARQUE, modele.getMarque().getId());
         c.put(ConstanteDB.MO_NOM, modele.getNom());
+        c.put(ConstanteDB.MO_PATH_PHOTO, "zfeuihh");
 
         return  c;
     }

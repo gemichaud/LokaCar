@@ -27,6 +27,7 @@ import fr.eni.lokacar.DAL.DAO.GerantDAO;
 import fr.eni.lokacar.DAL.DAO.LocationDAO;
 import fr.eni.lokacar.DAL.DAO.MarqueDAO;
 import fr.eni.lokacar.DAL.DAO.ModeleDAO;
+import fr.eni.lokacar.DAL.DAO.VehiculeDAO;
 
 public class JeuxDessai {
 

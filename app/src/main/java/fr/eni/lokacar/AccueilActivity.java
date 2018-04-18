@@ -1,5 +1,6 @@
 package fr.eni.lokacar;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,9 +28,10 @@ public class AccueilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
 
+        Context c = AccueilActivity.this;
+        JeuxDessai jd = new JeuxDessai();
+        jd.insertLoc(c);
 
-       JeuxDessai jd = new JeuxDessai();
-        jd.insertVehicule(AccueilActivity.this);
         Button btnLog = findViewById(R.id.connect_accueil);
         btnLog.setOnClickListener(new View.OnClickListener() {
             @Override
