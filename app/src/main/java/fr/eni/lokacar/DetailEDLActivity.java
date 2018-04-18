@@ -59,6 +59,7 @@ public class DetailEDLActivity extends AppCompatActivity implements View.OnClick
 
         intent = getIntent();
 
+
         /**
          * Get infos from DB
          * */

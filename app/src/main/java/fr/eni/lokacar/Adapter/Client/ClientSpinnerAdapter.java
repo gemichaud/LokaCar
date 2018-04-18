@@ -1,9 +1,8 @@
-package fr.eni.lokacar.Adapter;
+package fr.eni.lokacar.Adapter.Client;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +12,19 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import fr.eni.lokacar.BO.Client;
 import fr.eni.lokacar.BO.Location;
 import fr.eni.lokacar.R;
 
-public class LocationAdapter extends ArrayAdapter<Location> {
+public class ClientSpinnerAdapter extends ArrayAdapter<Client> {
 
-    private List<Location> listLocation;
+    private List<Client> listClient;
     private Context c;
     private int res;
 
-    public LocationAdapter(@NonNull Context context, int resource, @NonNull List<Location> objects) {
+    public ClientSpinnerAdapter(@NonNull Context context, int resource, @NonNull List<Client> objects) {
         super(context, resource, objects);
-        this.listLocation = objects;
+        this.listClient = objects;
         this.res = resource;
         this.c = context;
     }
@@ -42,22 +42,16 @@ public class LocationAdapter extends ArrayAdapter<Location> {
             convertView = inflater.inflate(res,parent,false);
             viewHolder = new ViewHolder();
             viewHolder.avClient = (TextView)convertView.findViewById(R.id.lstClient);
-            viewHolder.avImmat = (TextView)convertView.findViewById(R.id.lstVehicule);
-            viewHolder.avDateDebut = (TextView)convertView.findViewById(R.id.lstDateDeDebut);
-            viewHolder.avDateFin = (TextView)convertView.findViewById(R.id.lstDateDeFin);
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-        Location location = getItem(position);
+        Client client = getItem(position);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
-        viewHolder.avClient.setText(location.getClient().getPrenom() + " " + location.getClient().getNom());
-        viewHolder.avImmat.setText(location.getVehicule().getImmatriculation());
-        viewHolder.avDateDebut.setText(sdf.format(location.getDateDebut()));
-        viewHolder.avDateFin.setText(sdf.format(location.getDateFinPrevu()));
+        viewHolder.avClient.setText(client.getPrenom() + " " + client.getNom());
+
 
         return convertView;
 
@@ -67,13 +61,10 @@ public class LocationAdapter extends ArrayAdapter<Location> {
 
     static class ViewHolder{
         TextView avClient;
-        TextView avImmat;
-        TextView avDateDebut;
-        TextView avDateFin;
     }
 
 
-    public Location getItem(int position) {
-        return listLocation.get(position);
+    public Client getItem(int position) {
+        return listClient.get(position);
     }
 }

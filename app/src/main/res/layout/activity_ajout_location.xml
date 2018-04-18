@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AjoutLocationActivity"
+    android:orientation="vertical"
+    android:layout_margin="20dp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/client"
+        android:layout_weight="1"/>
+    <Spinner
+        android:id="@+id/clients_add_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vehicule"
+        android:layout_weight="1"/>
+
+    <Spinner
+        android:id="@+id/vehicules_add_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date_de_debut"
+        android:layout_gravity="center"
+        android:paddingRight="10dp"
+        android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/date_debut_add_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="--/--/----"
+            android:paddingRight="10dp"
+            android:layout_weight="1"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatBtnPickDateDebut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_info_details"
+        android:onClick="showDatePickerDialog"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date_de_debut"
+            android:paddingRight="10dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/date_fin_add_location"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="--/--/----"
+            android:paddingRight="10dp"
+            android:layout_weight="1"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatBtnPickDateFin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_info_details"
+            android:onClick="showDatePickerDialog"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="enregistrer"
+        android:layout_gravity="center"
+        android:layout_weight="1"/>
+
+</LinearLayout>
+
+</LinearLayout>

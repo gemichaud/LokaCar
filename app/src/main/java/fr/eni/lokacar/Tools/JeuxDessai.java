@@ -14,12 +14,14 @@ import java.util.UUID;
 
 import fr.eni.lokacar.BO.Agence;
 import fr.eni.lokacar.BO.Client;
+import fr.eni.lokacar.BO.Coordonnee;
 import fr.eni.lokacar.BO.DetailsModele;
 import fr.eni.lokacar.BO.Gerant;
 import fr.eni.lokacar.BO.Location;
 import fr.eni.lokacar.BO.Marque;
 import fr.eni.lokacar.BO.Modele;
 import fr.eni.lokacar.BO.Vehicule;
+import fr.eni.lokacar.DAL.DAO.AgenceDAO;
 import fr.eni.lokacar.DAL.DAO.DetailModelDAO;
 import fr.eni.lokacar.DAL.DAO.GerantDAO;
 import fr.eni.lokacar.DAL.DAO.LocationDAO;
@@ -37,6 +39,7 @@ public class JeuxDessai {
     Marque marque;
     DetailsModele detailsModele;
     Client client;
+    Coordonnee coordonnee;
 
     public void insertGerant(Context c ){
 
@@ -59,6 +62,9 @@ public class JeuxDessai {
         a.setAdresse("3 rue de toto");
         a.setVille("Nantes");
         a.setGerant(g);
+
+        AgenceDAO agenceDAO = new AgenceDAO(c);
+        agenceDAO.insertAgence(a);
 
     }
 
@@ -111,12 +117,21 @@ public class JeuxDessai {
 
     }
 
+    public void insertCoordonnee(Context c){
+        this.coordonnee = new Coordonnee();
+        coordonnee.setAdresse("2 rue du stade");
+        coordonnee.setEmail("toto.duchmol@mail.com");
+        coordonnee.setTelephone("0623154578");
+        coordonnee.setVille("Moncuq");
+    }
 
     public void insertClient(Context c){
         this.client = new Client();
         client.setiD(UUID.randomUUID());
         client.setPrenom("Toto");
         client.setNom("Duchmol");
+        insertCoordonnee(c);
+        client.setCoordonee(coordonnee);
     }
 
     public List<Location> getLocations(Context c){
