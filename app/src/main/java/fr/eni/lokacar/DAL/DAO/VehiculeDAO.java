@@ -32,6 +32,8 @@ public class VehiculeDAO {
             "v."+ConstanteDB.V_AGENCE_ID +" as agenceID "+
             "  FROM " + ConstanteDB.VEHICULES + " g ";
 
+    private Context context;
+
 
     public void openForWrite(){
         db = locaCarDB.getWritableDatabase();
@@ -43,6 +45,7 @@ public class VehiculeDAO {
 
     public VehiculeDAO(Context context) {
         locaCarDB = new LocaCarDB(context, NOM_BASE, null, version);
+        this.context = context;
     }
 
     public void insertVehicule( Vehicule v ){
@@ -57,7 +60,9 @@ public class VehiculeDAO {
     public List<Vehicule> selectAll(){
         openForRead();
         Cursor c  = db.rawQuery(SELECTALL, new String[]{});
-        List<Vehicule> listVehicule = new ArrayList<Vehicule>();
+        List<Vehicule> listVehicule = new ArrayList<>();
+
+        ModeleDAO modeleDAO = new ModeleDAO(context);
 
         while (c.moveToNext()){
             Vehicule vehicule = new Vehicule();
@@ -66,10 +71,11 @@ public class VehiculeDAO {
             vehicule.setKilometrage(c.getInt(c.getColumnIndex(ConstanteDB.V_KM)));
             vehicule.setEtat(c.getString(c.getColumnIndex(ConstanteDB.V_STATUT)));
             vehicule.setPrixJournalier(c.getInt(c.getColumnIndex(ConstanteDB.V_PRIX_JOUR)));
-            c.getColumnIndex(ConstanteDB.V_CNIT_VE);
+            vehicule.setModele(modeleDAO.findModelById(c.getString(c.getColumnIndex(ConstanteDB.V_CNIT_VE))));
 
             listVehicule.add(vehicule);
         }
+        c.close();
         return listVehicule;
     }
 
