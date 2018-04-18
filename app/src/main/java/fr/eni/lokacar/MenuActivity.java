@@ -51,7 +51,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case 1 : c = GestionClientActivity.class;
                 break;
-            case 2 : c = null;
+            case 2 : c = GestionLocationActivity.class;
                 break;
             case 3 : c = null;
                 break;
