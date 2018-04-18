@@ -43,7 +43,7 @@
         <activity android:name=".GestionClientActivity" />
         <activity android:name=".AjoutClientActivity"></activity>
         <activity android:name=".AjoutLocationActivity"></activity>
-        <activity android:name=".AjoutClientActivity" />
+        <activity android:name=".DetailLocationActivity" />
         <activity android:name=".DetailClientActivity"></activity>
     </application>
 
