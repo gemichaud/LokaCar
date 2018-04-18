@@ -2,10 +2,14 @@ package fr.eni.lokacar.Tools;
 
 import android.content.Context;
 
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import fr.eni.lokacar.BO.Agence;
@@ -16,9 +20,12 @@ import fr.eni.lokacar.BO.Location;
 import fr.eni.lokacar.BO.Marque;
 import fr.eni.lokacar.BO.Modele;
 import fr.eni.lokacar.BO.Vehicule;
+import fr.eni.lokacar.DAL.DAO.DetailModelDAO;
 import fr.eni.lokacar.DAL.DAO.GerantDAO;
+import fr.eni.lokacar.DAL.DAO.LocationDAO;
 import fr.eni.lokacar.DAL.DAO.MarqueDAO;
 import fr.eni.lokacar.DAL.DAO.ModeleDAO;
+import fr.eni.lokacar.DAL.DAO.VehiculeDAO;
 
 public class JeuxDessai {
 
@@ -57,7 +64,7 @@ public class JeuxDessai {
 
     public void insertMarque(Context c){
         this.marque = new Marque();
-        marque.setId(1);
+        marque.setId(new Random().nextInt(3000));
         marque.setNom("Citroen");
 
         MarqueDAO marqueDAO = new MarqueDAO(c);
@@ -88,6 +95,11 @@ public class JeuxDessai {
     }
 
     public void insertVehicule(Context c){
+        try {
+            this.a = new GerantDAO(c).connect("test", "test");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         this.vehicule = new Vehicule();
         vehicule.setPrixJournalier(50);
         vehicule.setEtat("LB");
@@ -130,6 +142,84 @@ public class JeuxDessai {
 
 
         return lstLoc;
+
+    }
+
+    public void insertV(Context c) throws NoSuchAlgorithmException {
+        Vehicule v = new Vehicule();
+
+
+        Modele m = new Modele();
+        Marque ma = new Marque();
+        ma.setId(new Random().nextInt(54646));
+        ma.setNom("lada");
+
+        DetailsModele dm = new DetailsModele();
+        dm.setBoite("Manuel");
+        dm.setCarburant("Essence");
+        dm.setcNIT("poqsdqiojhoi");
+        dm.setDesignation("LADA");
+        dm.setModeleCommercial("Lada ");
+        dm.setGamme("Luxe");
+        dm.setCarrosserie("berline");
+
+        m.setcNIT(dm.getcNIT());
+        m.setMarque(ma);
+        m.setNom("lada");
+        m.setDetailModele(dm);
+
+
+        v.setAgence(new GerantDAO(c).connect("test", "test"));
+        v.setEtat("LO");
+        v.setImmatriculation("ozrheioroz");
+        v.setModele(m);
+        v.setKilometrage(56445);
+        v.setPrixJournalier(564);
+
+        try {
+            MarqueDAO marqueDAO = new MarqueDAO(c);
+            marqueDAO.insertMarque(ma);
+
+            ModeleDAO modeleDAO = new ModeleDAO(c);
+            modeleDAO.insertModele(m);
+
+            DetailModelDAO detailModelDAO = new DetailModelDAO(c);
+            detailModelDAO.insertDetailModel(dm);
+
+            VehiculeDAO vehiculeDAO = new VehiculeDAO(c);
+            vehiculeDAO.insertVehicule(v);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void insertLoc(Context c) {
+
+        Location l = new Location();
+        Client cli = new Client();
+        cli.setiD(UUID.fromString("cfdb25b2-7575-4011-84d7-ae68c26656c5"));
+        l.setClient(cli);
+        l.setiD(UUID.randomUUID());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            l.setDateDebut(sdf.parse("2018-04-18"));
+
+            l.setDateFinPrevu(sdf.parse("2018-04-25"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Vehicule v = new Vehicule();
+        v.setImmatriculation("ozrheioroz");
+        l.setVehicule(v);
+
+        l.setStatut("EC");
+
+        LocationDAO lDao = new LocationDAO(c);
+        lDao.insertLocation(l);
+
 
     }
 
