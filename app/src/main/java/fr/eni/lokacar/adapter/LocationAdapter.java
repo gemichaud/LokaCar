@@ -1,4 +1,4 @@
-package fr.eni.lokacar.adapter;
+package fr.eni.lokacar.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

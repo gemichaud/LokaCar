@@ -10,7 +10,7 @@ import java.util.List;
 
 import fr.eni.lokacar.BO.Location;
 import fr.eni.lokacar.Tools.JeuxDessai;
-import fr.eni.lokacar.adapter.LocationAdapter;
+import fr.eni.lokacar.Adapter.LocationAdapter;
 
 public class GestionLocationActivity extends AppCompatActivity {
 
