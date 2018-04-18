@@ -15,6 +15,7 @@ import java.util.UUID;
 
 import fr.eni.lokacar.BO.Client;
 
+import fr.eni.lokacar.BO.Coordonnee;
 import fr.eni.lokacar.BO.Location;
 import fr.eni.lokacar.BO.Vehicule;
 import fr.eni.lokacar.DAL.CreationBASE.ConstanteDB;
@@ -68,6 +69,20 @@ public class LocationDAO {
             + "INNER JOIN "+ ConstanteDB.CLIENTS +" c  ON c."+ConstanteDB.CLI_ID+"=l."+ConstanteDB.LOC_CLI_ID
             + " INNER JOIN "+ ConstanteDB.VEHICULES +" v  ON v."+ConstanteDB.V_IMMAT+"=l."+ConstanteDB.LOC_IMMAT_V
             + " WHERE l." + ConstanteDB.LOC_STATUT + "=? ";
+
+
+    private final String SELECT_LOC_DETAIL = "SELECT " +
+            " c." + ConstanteDB.CLI_ID
+            + ", c." + ConstanteDB.CLI_NOM
+            + ", c." + ConstanteDB.CLI_PRENOM
+            + ", coo." + ConstanteDB.COO_VILLE
+            + ", coo." + ConstanteDB.COO_TEL
+            + ", coo." + ConstanteDB.COO_MAIL
+            + ", coo." + ConstanteDB.COO_ADRESSE
+            + " FROM " + ConstanteDB.LOCATIONS + " l"
+            + " INNER JOIN " + ConstanteDB.CLIENTS + " c ON c." + ConstanteDB.CLI_ID + " = l." + ConstanteDB.LOC_CLI_ID
+            + " INNER JOIN " + ConstanteDB.COORDONNEES + " coo  on c." + ConstanteDB.CLI_ID + " = coo." + ConstanteDB.COO_ID
+            + " WHERE l." + ConstanteDB.LOC_ID + " = ?";
 
 
     public void openForWrite(){
@@ -159,5 +174,33 @@ public class LocationDAO {
         c.put(ConstanteDB.LOC_STATUT, location.getStatut());
 
         return c;
+    }
+
+    public Location getDetail(Location l) {
+
+        openForRead();
+        Cursor c = db.rawQuery(SELECT_LOC_DETAIL, new String[]{l.getiD().toString()});
+
+        Client cli = new Client();
+        if (c.moveToNext()) {
+            cli.setPrenom(c.getString(c.getColumnIndex(ConstanteDB.CLI_PRENOM)));
+            cli.setNom(c.getString(c.getColumnIndex(ConstanteDB.CLI_NOM)));
+            cli.setiD(UUID.fromString(c.getString(c.getColumnIndex(ConstanteDB.CLI_ID))));
+
+            Coordonnee coo = new Coordonnee();
+            coo.setVille(c.getString(c.getColumnIndex(ConstanteDB.COO_VILLE)));
+            coo.setTelephone(c.getString(c.getColumnIndex(ConstanteDB.COO_TEL)));
+            coo.setAdresse(c.getString(c.getColumnIndex(ConstanteDB.COO_ADRESSE)));
+            coo.setEmail(c.getString(c.getColumnIndex(ConstanteDB.COO_MAIL)));
+
+            cli.setCoordonee(coo);
+
+        }
+
+        l.setClient(cli);
+
+        return l;
+
+
     }
 }
