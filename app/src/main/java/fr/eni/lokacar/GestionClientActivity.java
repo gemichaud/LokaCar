@@ -9,6 +9,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,31 +19,18 @@ import java.util.UUID;
 
 import fr.eni.lokacar.Adapter.Client.ClientRecyclerViewAdapter;
 import fr.eni.lokacar.Adapter.OnItemClickListener;
+import fr.eni.lokacar.BLL.ClientManager;
 import fr.eni.lokacar.BO.Client;
 
 public class GestionClientActivity extends AppCompatActivity {
 
     private RecyclerView rV;
     private ClientRecyclerViewAdapter adapter;
+    private List<Client> clients;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestion_client);
-
-        final List<Client> clients = getClients();
-
-        rV = findViewById(R.id.list_clients);
-        adapter = new ClientRecyclerViewAdapter(clients, new OnItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-
-                System.out.println(clients.get(position).getNom());
-            }
-        });
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GestionClientActivity.this);
-        rV.setLayoutManager(layoutManager);
-        rV.setItemAnimator(new DefaultItemAnimator());
-        rV.setAdapter(adapter);
 
 
         FloatingActionButton addCli = findViewById(R.id.btn_add_cli);
@@ -52,41 +42,60 @@ public class GestionClientActivity extends AppCompatActivity {
             }
         });
 
+        ImageButton btnSearch = findViewById(R.id.cli_search_button);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText txtName = findViewById(R.id.cli_search_name);
+                String name = txtName.getText().toString();
+                ClientManager clientManager = new ClientManager(GestionClientActivity.this);
+                clients = clientManager.searchByName(name);
+                initIHM();
+
+            }
+        });
+
+
+    }
+
+    private void initList() {
+        this.clients = getClients();
+        initIHM();
+    }
+
+    private void initIHM() {
+
+
+        rV = findViewById(R.id.list_clients);
+        adapter = new ClientRecyclerViewAdapter(clients, new OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+
+                ClientManager clientManager = new ClientManager(GestionClientActivity.this);
+                Client cli = clientManager.selectClientById(clients.get(position).getiD());
+                Intent i = new Intent(GestionClientActivity.this, DetailClientActivity.class);
+                i.putExtra("client", cli);
+                GestionClientActivity.this.startActivity(i);
+
+            }
+        });
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(GestionClientActivity.this);
+        rV.setLayoutManager(layoutManager);
+        rV.setItemAnimator(new DefaultItemAnimator());
+        rV.setAdapter(adapter);
     }
 
     @NonNull
     private List<Client> getClients() {
-        Client c = new Client();
-        c.setNom("toto");
-        c.setPrenom("tutu");
-        c.setiD(UUID.randomUUID());
+        ClientManager cM = new ClientManager(GestionClientActivity.this);
+        return cM.selectAllClient();
+    }
 
-        Client c1 = new Client();
-        c1.setNom("zozo");
-        c1.setPrenom("zuzu");
-        c1.setiD(UUID.randomUUID());
 
-        Client c2= new Client();
-        c2.setNom("roro");
-        c2.setPrenom("ruru");
-        c2.setiD(UUID.randomUUID());
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-        Client c3 = new Client();
-        c3.setNom("momo");
-        c3.setPrenom("mumu");
-        c3.setiD(UUID.randomUUID());
-
-        Client c4 = new Client();
-        c4.setNom("koko");
-        c4.setPrenom("kuku");
-        c4.setiD(UUID.randomUUID());
-
-        final List<Client> clients = new ArrayList<>();
-        clients.add(c);
-        clients.add(c1);
-        clients.add(c2);
-        clients.add(c3);
-        clients.add(c4);
-        return clients;
+        initList();
     }
 }

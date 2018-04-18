@@ -34,11 +34,11 @@ public class AjoutClientActivity extends AppCompatActivity {
         });
 
         txtAdresse = findViewById(R.id.txt_add_cli_adresse);
-        txtNom = findViewById(R.id.txt_add_cli_adresse);
-        txtPrenom = findViewById(R.id.txt_add_cli_adresse);
-        txtTel = findViewById(R.id.txt_add_cli_adresse);
-        txtMail = findViewById(R.id.txt_add_cli_adresse);
-        txtVille = findViewById(R.id.txt_add_cli_adresse);
+        txtNom = findViewById(R.id.txt_add_cli_nom);
+        txtPrenom = findViewById(R.id.txt_add_cli_prenom);
+        txtTel = findViewById(R.id.txt_add_cli_telephone);
+        txtMail = findViewById(R.id.txt_add_cli_mail);
+        txtVille = findViewById(R.id.txt_add_cli_ville);
 
         Button btnValider = findViewById(R.id.btn_valider_ajout_cli);
 
@@ -47,6 +47,7 @@ public class AjoutClientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (validationFormulaire()){
                     insertClient();
+                    AjoutClientActivity.this.finish();
                 }
             }
         });
@@ -59,23 +60,23 @@ public class AjoutClientActivity extends AppCompatActivity {
             isOK=false;
         }
         if(txtMail.getEditText().getText().toString().trim().equals("")){
-            txtAdresse.setError("L'adresse mail est requise");
+            txtMail.setError("L'adresse mail est requise");
             isOK=false;
         }
         if(txtNom.getEditText().getText().toString().trim().equals("")){
-            txtAdresse.setError("Le nom est requis");
+            txtNom.setError("Le nom est requis");
             isOK=false;
         }
         if(txtPrenom.getEditText().getText().toString().trim().equals("")){
-            txtAdresse.setError("Le prenom est requis");
+            txtPrenom.setError("Le prenom est requis");
             isOK=false;
         }
         if(txtTel.getEditText().getText().toString().trim().equals("")){
-            txtAdresse.setError("Le numero de telephone est requis");
+            txtTel.setError("Le numero de telephone est requis");
             isOK=false;
         }
         if(txtVille.getEditText().getText().toString().trim().equals("")){
-            txtAdresse.setError("La ville est requise");
+            txtVille.setError("La ville est requise");
             isOK=false;
         }
 
