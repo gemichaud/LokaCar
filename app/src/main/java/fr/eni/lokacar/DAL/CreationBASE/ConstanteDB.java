@@ -72,6 +72,7 @@ public final class ConstanteDB {
     public static final String PhV_Localisation  = "LOCALISATION";
     public static final String PhV_ID_LOC = "ID_LOCATION";
     public static final String PhV_IMMAT_V = "IMMAT_V";
+    public static final String PhV_DESCRIPTION = "DESCRIPTION";
 
     //CONSTANTES Client
     public static final String CLIENTS= "CLIENTS";

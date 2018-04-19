@@ -141,9 +141,10 @@ public class LocaCarDB extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        dropTable(db);
-        createTable(db);
+       /* dropTable(db);
+        createTable(db);*/
       //  db.execSQL("ALTER TABLE " + ConstanteDB.PHOTO_VOITURES+ " ADD COLUMN " + ConstanteDB.PhV_IMMAT_V+ " TEXT REFERENCES " + ConstanteDB.VEHICULES+ " ("+ ConstanteDB.V_IMMAT+")");
+        db.execSQL("ALTER TABLE " + ConstanteDB.PHOTO_VOITURES+ " ADD COLUMN " + ConstanteDB.PhV_DESCRIPTION+ " TEXT ");
 
     }
 

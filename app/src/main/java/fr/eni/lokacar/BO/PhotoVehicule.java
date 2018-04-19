@@ -31,6 +31,7 @@ public class PhotoVehicule implements Parcelable {
         path = in.readString();
         description = in.readString();
         derniere = in.readByte() != 0;
+        localisationVehiculeEnum = LocalisationVehicule.valueOf(in.readString());
         location = in.readParcelable(Location.class.getClassLoader());
     }
 
@@ -40,6 +41,7 @@ public class PhotoVehicule implements Parcelable {
         dest.writeString(path);
         dest.writeString(description);
         dest.writeByte((byte) (derniere ? 1 : 0));
+        dest.writeString(localisationVehiculeEnum.toString());
         dest.writeParcelable(location, flags);
     }
 
