@@ -15,7 +15,11 @@ import java.util.UUID;
 
 import fr.eni.lokacar.BO.Client;
 
+import fr.eni.lokacar.BO.Coordonnee;
+import fr.eni.lokacar.BO.DetailsModele;
 import fr.eni.lokacar.BO.Location;
+import fr.eni.lokacar.BO.Marque;
+import fr.eni.lokacar.BO.Modele;
 import fr.eni.lokacar.BO.Vehicule;
 import fr.eni.lokacar.DAL.CreationBASE.ConstanteDB;
 import fr.eni.lokacar.DAL.CreationBASE.LocaCarDB;
@@ -68,6 +72,35 @@ public class LocationDAO {
             + "INNER JOIN "+ ConstanteDB.CLIENTS +" c  ON c."+ConstanteDB.CLI_ID+"=l."+ConstanteDB.LOC_CLI_ID
             + " INNER JOIN "+ ConstanteDB.VEHICULES +" v  ON v."+ConstanteDB.V_IMMAT+"=l."+ConstanteDB.LOC_IMMAT_V
             + " WHERE l." + ConstanteDB.LOC_STATUT + "=? ";
+
+
+    private final String SELECT_LOC_DETAIL = "SELECT " +
+            " c." + ConstanteDB.CLI_ID
+            + ", c." + ConstanteDB.CLI_NOM
+            + ", c." + ConstanteDB.CLI_PRENOM
+            + ", coo." + ConstanteDB.COO_VILLE
+            + ", coo." + ConstanteDB.COO_TEL
+            + ", coo." + ConstanteDB.COO_MAIL
+            + ", coo." + ConstanteDB.COO_ADRESSE
+            + ", mo." + ConstanteDB.MO_CNIT
+            + ", mo." + ConstanteDB.MO_ID_MARQUE
+            + ", mo." + ConstanteDB.MO_PATH_PHOTO
+            + ", mo." + ConstanteDB.MO_NOM + " as NOM_MODEL"
+            + ", dm." + ConstanteDB.DM_BOITE
+            + ", dm." + ConstanteDB.DM_CARBURANT
+            + ", dm." + ConstanteDB.DM_CARROSSERIE
+            + ", dm." + ConstanteDB.DM_DESIGNATION
+            + ", dm." + ConstanteDB.DM_GAMME
+            + ", dm." + ConstanteDB.DM_MODEL_COM
+            + ", ma." + ConstanteDB.MA_NOM + " as NOM_MARQUE"
+            + " FROM " + ConstanteDB.LOCATIONS + " l"
+            + " INNER JOIN " + ConstanteDB.CLIENTS + " c ON c." + ConstanteDB.CLI_ID + " = l." + ConstanteDB.LOC_CLI_ID
+            + " INNER JOIN " + ConstanteDB.COORDONNEES + " coo  on c." + ConstanteDB.CLI_ID + " = coo." + ConstanteDB.COO_ID
+            + " INNER JOIN " + ConstanteDB.VEHICULES + " v  on v." + ConstanteDB.V_IMMAT + " = l." + ConstanteDB.LOC_IMMAT_V
+            + " INNER JOIN " + ConstanteDB.MODELES + " mo  on v." + ConstanteDB.MO_CNIT + " = mo." + ConstanteDB.MO_CNIT
+            + " INNER JOIN " + ConstanteDB.DETAILS_MODELES + " dm  on dm." + ConstanteDB.DM_CNIT + " = mo." + ConstanteDB.MO_CNIT
+            + " INNER JOIN " + ConstanteDB.MARQUES + " ma  on ma." + ConstanteDB.MA_ID + " = mo." + ConstanteDB.MO_ID_MARQUE
+            + " WHERE l." + ConstanteDB.LOC_ID + " = ?";
 
 
     public void openForWrite(){
@@ -159,5 +192,53 @@ public class LocationDAO {
         c.put(ConstanteDB.LOC_STATUT, location.getStatut());
 
         return c;
+    }
+
+    public Location getDetail(Location l) {
+
+        openForRead();
+        Cursor c = db.rawQuery(SELECT_LOC_DETAIL, new String[]{l.getiD().toString()});
+        Modele mo = new Modele();
+        Client cli = new Client();
+        if (c.moveToNext()) {
+            cli.setPrenom(c.getString(c.getColumnIndex(ConstanteDB.CLI_PRENOM)));
+            cli.setNom(c.getString(c.getColumnIndex(ConstanteDB.CLI_NOM)));
+            cli.setiD(UUID.fromString(c.getString(c.getColumnIndex(ConstanteDB.CLI_ID))));
+
+            Coordonnee coo = new Coordonnee();
+            coo.setVille(c.getString(c.getColumnIndex(ConstanteDB.COO_VILLE)));
+            coo.setTelephone(c.getString(c.getColumnIndex(ConstanteDB.COO_TEL)));
+            coo.setAdresse(c.getString(c.getColumnIndex(ConstanteDB.COO_ADRESSE)));
+            coo.setEmail(c.getString(c.getColumnIndex(ConstanteDB.COO_MAIL)));
+
+            cli.setCoordonee(coo);
+
+            Marque ma = new Marque();
+            ma.setNom(c.getString(c.getColumnIndex("NOM_MARQUE")));
+
+            DetailsModele dm = new DetailsModele();
+            dm.setGamme(c.getString(c.getColumnIndex(ConstanteDB.DM_GAMME)));
+            dm.setCarrosserie(c.getString(c.getColumnIndex(ConstanteDB.DM_CARROSSERIE)));
+            dm.setCarburant(c.getString(c.getColumnIndex(ConstanteDB.DM_CARBURANT)));
+            dm.setModeleCommercial(c.getString(c.getColumnIndex(ConstanteDB.DM_MODEL_COM)));
+            dm.setDesignation(c.getString(c.getColumnIndex(ConstanteDB.DM_DESIGNATION)));
+            dm.setcNIT(c.getString(c.getColumnIndex(ConstanteDB.MO_CNIT)));
+
+
+            mo.setNom(c.getString(c.getColumnIndex("NOM_MODEL")));
+            mo.setcNIT(c.getString(c.getColumnIndex(ConstanteDB.MO_CNIT)));
+
+            mo.setDetailModele(dm);
+            mo.setMarque(ma);
+
+
+
+        }
+        l.getVehicule().setModele(mo);
+        l.setClient(cli);
+
+        return l;
+
+
     }
 }

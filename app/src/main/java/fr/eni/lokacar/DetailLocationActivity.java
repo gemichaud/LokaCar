@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import fr.eni.lokacar.BO.Location;
+import fr.eni.lokacar.DAL.DAO.LocationDAO;
 
 public class DetailLocationActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,6 +39,9 @@ public class DetailLocationActivity extends AppCompatActivity implements View.On
 
         intent = getIntent();
         loc = intent.getParcelableExtra("loc");
+
+        LocationDAO locationDAO = new LocationDAO(DetailLocationActivity.this);
+        loc = locationDAO.getDetail(loc);
 
 
         client = findViewById(R.id.client_detail_location);

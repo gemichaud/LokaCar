@@ -30,7 +30,7 @@ public class AccueilActivity extends AppCompatActivity {
 
         Context c = AccueilActivity.this;
         JeuxDessai jd = new JeuxDessai();
-        jd.insertLoc(c);
+        jd.insertDetailModel(c);
 
         Button btnLog = findViewById(R.id.connect_accueil);
         btnLog.setOnClickListener(new View.OnClickListener() {
