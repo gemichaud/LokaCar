@@ -71,15 +71,16 @@ public final class ConstanteDB {
     public static final String PhV_DERNIERE = "DERNIERE";
     public static final String PhV_Localisation  = "LOCALISATION";
     public static final String PhV_ID_LOC = "ID_LOCATION";
+    public static final String PhV_IMMAT_V = "IMMAT_V";
 
-    //CONSTANTES PHOTO Client
+    //CONSTANTES Client
     public static final String CLIENTS= "CLIENTS";
     public static final String CLI_ID= "ID";
     public static final String CLI_NOM = "NOM";
     public static final String CLI_PRENOM= "PRENOM";
 
 
-    //CONSTANTES PHOTO COORDONNEES
+    //CONSTANTES COORDONNEES
     public static final String COORDONNEES= "COORDONNEES";
     public static final String COO_ID= "ID_CLIENT";
     public static final String COO_TEL= "TELEPHONE";

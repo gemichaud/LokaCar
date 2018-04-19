@@ -91,8 +91,9 @@ public class LocaCarDB extends SQLiteOpenHelper {
             + ConstanteDB.PhV_Localisation + " TEXT NOT NULL , "
             + ConstanteDB.PhV_DERNIERE + " INTEGER NOT NULL , "
             + ConstanteDB.PhV_ID_LOC + " TEXT NOT NULL , "
-            + ""
-            + "FOREIGN KEY( " + ConstanteDB.PhV_ID_LOC  +") REFERENCES  " + ConstanteDB.LOCATIONS  +"( "+  ConstanteDB.LOC_ID   + " ))";
+            + ConstanteDB.PhV_IMMAT_V + " TEXT , "
+            + "FOREIGN KEY( " + ConstanteDB.PhV_ID_LOC  +") REFERENCES  " + ConstanteDB.LOCATIONS  +"( "+  ConstanteDB.LOC_ID   + " ),"
+            + " FOREIGN KEY( " + ConstanteDB.PhV_IMMAT_V  +") REFERENCES  " + ConstanteDB.VEHICULES  +"( "+  ConstanteDB.V_IMMAT   + " ))";
 
     private static final String CREATE_TA_CLI=
             " CREATE TABLE " + ConstanteDB.CLIENTS
@@ -107,7 +108,7 @@ public class LocaCarDB extends SQLiteOpenHelper {
             + ConstanteDB.FACT_DFIN + " INTEGER NOT NULL ,"
             + ConstanteDB.FACT_MONTANT + " REAL NOT NULL ,"
             +""
-            + "FOREIGN KEY( " + ConstanteDB.FACT_ID  +") REFERENCES  " + ConstanteDB.LOCATIONS  +"( "+  ConstanteDB.LOC_ID   + " ))";;
+            + "FOREIGN KEY( " + ConstanteDB.FACT_ID  +") REFERENCES  " + ConstanteDB.LOCATIONS  +"( "+  ConstanteDB.LOC_ID   + " ))";
 
 
     private static final String CREATE_TA_Coo=
@@ -142,6 +143,7 @@ public class LocaCarDB extends SQLiteOpenHelper {
 
         dropTable(db);
         createTable(db);
+      //  db.execSQL("ALTER TABLE " + ConstanteDB.PHOTO_VOITURES+ " ADD COLUMN " + ConstanteDB.PhV_IMMAT_V+ " TEXT REFERENCES " + ConstanteDB.VEHICULES+ " ("+ ConstanteDB.V_IMMAT+")");
 
     }
 
