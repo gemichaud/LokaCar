@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     tools:context=".EtatDesLieuxActivity"
     android:orientation="vertical"
-    android:background="#ff000000"
+    android:background="@drawable/back_edl"
     android:scaleType = "centerCrop"
     android:adjustViewBounds="true">
 
