@@ -56,7 +56,7 @@ public class GestionLocationActivity extends AppCompatActivity {
 
 
         lstView = findViewById(R.id.listLocation);
-        listLocations = new ArrayList<Location>();
+        listLocations = new ArrayList<>();
 
 
         /*JeuxDessai jd = new JeuxDessai();
@@ -74,7 +74,6 @@ public class GestionLocationActivity extends AppCompatActivity {
         super.onResume();
         LocationManager locationManager = new LocationManager();
         listLocations = locationManager.selectAllEC(GestionLocationActivity.this);
-
 
         adapter = new LocationAdapter(
                 GestionLocationActivity.this,

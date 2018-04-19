@@ -32,6 +32,9 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Date;
 
+import fr.eni.lokacar.BO.Location;
+import fr.eni.lokacar.BO.PhotoVehicule;
+
 public class DetailEDLActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FloatingActionButton floatBtnAddPhoto;
@@ -41,6 +44,9 @@ public class DetailEDLActivity extends AppCompatActivity implements View.OnClick
     private Intent intent;
     private String mCurrentPhotoPath;
     private static final int REQUEST_TAKE_PHOTO = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private Location location;
+    private PhotoVehicule photoVehicule;
 
 
     @Override
@@ -58,6 +64,9 @@ public class DetailEDLActivity extends AppCompatActivity implements View.OnClick
 
 
         intent = getIntent();
+        location = intent.getParcelableExtra("location");
+        photoVehicule = intent.getParcelableExtra("photoVehicule");
+
 
 
         /**
@@ -86,14 +95,19 @@ public class DetailEDLActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void takeNewPicture() {
+
         dispatchTakePictureIntent();
+
+        //ask DB if
+
     }
 
     private void savePhotoAndDesc(){
 
+        //Save to DB
     }
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
