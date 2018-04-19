@@ -41,7 +41,7 @@ public class DetailLocationActivity extends AppCompatActivity implements View.On
         loc = intent.getParcelableExtra("loc");
 
         LocationDAO locationDAO = new LocationDAO(DetailLocationActivity.this);
-        locationDAO.getDetail(loc);
+        loc = locationDAO.getDetail(loc);
 
 
         client = findViewById(R.id.client_detail_location);
@@ -58,7 +58,7 @@ public class DetailLocationActivity extends AppCompatActivity implements View.On
         adresse.setText(loc.getClient().getCoordonee().getAdresse() + " " + loc.getClient().getCoordonee().getVille());
         telephone.setText(loc.getClient().getCoordonee().getTelephone());
         email.setText(loc.getClient().getCoordonee().getEmail());
-//        nomVehicule.setText(loc.getVehicule().getModele().getDetailModele().getModeleCommercial());
+        nomVehicule.setText(loc.getVehicule().getModele().getDetailModele().getModeleCommercial());
         immat.setText(loc.getVehicule().getImmatriculation());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 

@@ -172,7 +172,7 @@ public class JeuxDessai {
         DetailsModele dm = new DetailsModele();
         dm.setBoite("Manuel");
         dm.setCarburant("Essence");
-        dm.setcNIT("poqsdqiojhoi");
+        dm.setcNIT("pogjzriojhoi");
         dm.setDesignation("LADA");
         dm.setModeleCommercial("Lada ");
         dm.setGamme("Luxe");
@@ -236,6 +236,20 @@ public class JeuxDessai {
         lDao.insertLocation(l);
 
 
+    }
+
+    public void insertDetailModel(Context c) {
+        DetailsModele dm = new DetailsModele();
+        dm.setBoite("Manuel");
+        dm.setCarburant("Essence");
+        dm.setcNIT("pogjzriojhoi");
+        dm.setDesignation("LADA");
+        dm.setModeleCommercial("Lada ");
+        dm.setGamme("Luxe");
+        dm.setCarrosserie("berline");
+
+        DetailModelDAO detailModelDAO = new DetailModelDAO(c);
+        detailModelDAO.insertDetailModel(dm);
     }
 
 
