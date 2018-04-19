@@ -1,6 +1,7 @@
 package fr.eni.lokacar;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,10 @@ import fr.eni.lokacar.BO.Agence;
 import fr.eni.lokacar.BO.Location;
 
 public class GestionLocationActivity extends AppCompatActivity {
-
+    private FloatingActionButton btnEdit;
+    private FloatingActionButton btnCall;
+    private FloatingActionButton btnMenu;
+    private FloatingActionButton btnMail;
     private LocationAdapter adapter;
     private List<Location> listLocations;
     private ListView lstView;
@@ -59,7 +63,15 @@ public class GestionLocationActivity extends AppCompatActivity {
 
         listLocations = jd.getLocations(this);
 
+
 */
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         LocationManager locationManager = new LocationManager();
         listLocations = locationManager.selectAllEC(GestionLocationActivity.this);
 
@@ -86,6 +98,4 @@ public class GestionLocationActivity extends AppCompatActivity {
         });
 
     }
-
-
 }

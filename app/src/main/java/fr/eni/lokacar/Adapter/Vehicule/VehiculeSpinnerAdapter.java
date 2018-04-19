@@ -1,6 +1,7 @@
 package fr.eni.lokacar.Adapter.Vehicule;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -29,31 +30,19 @@ public class VehiculeSpinnerAdapter extends ArrayAdapter<Vehicule> {
     }
 
 
-    @NonNull
+    public View getView(int position, View convertView, ViewGroup parent) {
+        TextView label = (TextView) super.getView(position, convertView, parent);
+        label.setTextColor(Color.BLACK);
+        label.setText(this.getItem(position).getModele().getNom());
+        return label;
+    }
+
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-        ViewHolder viewHolder;
-
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        if(convertView == null){
-            convertView = inflater.inflate(res,parent,false);
-            viewHolder = new ViewHolder();
-            viewHolder.avVehicule = (TextView)convertView.findViewById(R.id.lstVehicule);
-
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder)convertView.getTag();
-        }
-
-        Vehicule vehicule = getItem(position);
-
-        viewHolder.avVehicule.setText(vehicule.getModele().getDetailModele().getModeleCommercial() + " (" + vehicule.getImmatriculation() + ")");
-
-
-        return convertView;
-
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        TextView label = (TextView) super.getView(position, convertView, parent);
+        label.setTextColor(Color.BLACK);
+        label.setText(this.getItem(position).getModele().getNom() + " " + this.getItem(position).getImmatriculation());
+        return label;
     }
 
 

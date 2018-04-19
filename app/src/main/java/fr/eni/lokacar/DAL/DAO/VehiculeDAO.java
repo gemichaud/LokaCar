@@ -31,7 +31,7 @@ public class VehiculeDAO {
             "v."+ConstanteDB.V_PRIX_JOUR + ", " +
             "v." + ConstanteDB.V_STATUT + ", " +
             "v."+ConstanteDB.V_AGENCE_ID +" as agenceID "+
-            "  FROM " + ConstanteDB.VEHICULES + " g ";
+            "  FROM " + ConstanteDB.VEHICULES + " v ";
 
     private Context context;
 
