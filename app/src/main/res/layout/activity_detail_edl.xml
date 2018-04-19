@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="40">
+        android:layout_weight="20">
         <ImageView
             android:id="@+id/photo"
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="60">
+        android:layout_weight="30">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,8 @@
       <EditText
           android:id="@+id/description"
           android:layout_width="match_parent"
-          android:layout_height="match_parent" />
+          android:layout_height="match_parent"
+          android:gravity="top"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatBtnSave"
