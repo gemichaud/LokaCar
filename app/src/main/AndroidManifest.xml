@@ -38,8 +38,7 @@
             android:parentActivityName=".AccueilActivity" />
         <activity android:name=".EtatDesLieuxActivity" />
         <activity
-            android:name=".DetailEDLActivity"
-            android:parentActivityName=".EtatDesLieuxActivity" />
+            android:name=".DetailEDLActivity" />
         <activity android:name=".GestionLocationActivity" />
         <activity android:name=".GestionClientActivity" />
         <activity android:name=".AjoutClientActivity"></activity>
