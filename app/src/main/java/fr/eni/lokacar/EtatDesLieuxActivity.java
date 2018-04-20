@@ -71,6 +71,12 @@ public class EtatDesLieuxActivity extends AppCompatActivity implements OnClickLi
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println(this.location.getiD());
+    }
+
+    @Override
     public void onClick(View v) {
 
         PhotoVehicule photoVehicule = new PhotoVehicule();

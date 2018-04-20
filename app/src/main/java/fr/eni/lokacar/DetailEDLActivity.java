@@ -65,6 +65,8 @@ public class DetailEDLActivity extends AppCompatActivity implements View.OnClick
     private final String PATH="/storage/emulated/0/Pictures/photo_vehicule/";
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +91,7 @@ public class DetailEDLActivity extends AppCompatActivity implements View.OnClick
         photoVehicule.setLocation(location);
 
         PhotoVehiculeManager photoVehiculeManager = new PhotoVehiculeManager();
+
         oldPhotoVehicule = photoVehiculeManager.selectByImmatLocDerniere(this,photoVehicule);
         oldPhotoVehicule.setLocation(location);
 

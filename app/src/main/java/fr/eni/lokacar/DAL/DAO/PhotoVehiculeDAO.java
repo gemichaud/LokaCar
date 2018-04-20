@@ -35,6 +35,7 @@ public class PhotoVehiculeDAO {
                     + ", p." + ConstanteDB.PhV_ID
                     + ", p." + ConstanteDB.PhV_Localisation
                     + ", p." + ConstanteDB.PhV_PATH
+                    + ", p."+ConstanteDB.PhV_ID_LOC
                     + " FROM " + ConstanteDB.PHOTO_VOITURES + " p "
                     + " WHERE p." + ConstanteDB.PhV_IMMAT_V + "=? "
                     + " AND p." + ConstanteDB.PhV_Localisation + "=?"
@@ -82,6 +83,7 @@ public class PhotoVehiculeDAO {
             photoVehicule.setDescription(c.getString(c.getColumnIndex(ConstanteDB.PhV_DESCRIPTION)));
             photoVehicule.setId(c.getInt(c.getColumnIndex(ConstanteDB.PhV_ID)));
             photoVehicule.setPath(c.getString(c.getColumnIndex(ConstanteDB.PhV_PATH)));
+
         }
 
         return photoVehicule;
