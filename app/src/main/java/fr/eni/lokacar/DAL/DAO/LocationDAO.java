@@ -17,6 +17,7 @@ import fr.eni.lokacar.BO.Client;
 
 import fr.eni.lokacar.BO.Coordonnee;
 import fr.eni.lokacar.BO.DetailsModele;
+import fr.eni.lokacar.BO.Facture;
 import fr.eni.lokacar.BO.Location;
 import fr.eni.lokacar.BO.Marque;
 import fr.eni.lokacar.BO.Modele;
@@ -24,6 +25,7 @@ import fr.eni.lokacar.BO.Vehicule;
 import fr.eni.lokacar.DAL.CreationBASE.ConstanteDB;
 import fr.eni.lokacar.DAL.CreationBASE.LocaCarDB;
 import fr.eni.lokacar.DAL.CreationBASE.VersionDB;
+import fr.eni.lokacar.DetailLocationActivity;
 
 
 public class LocationDAO {
@@ -232,7 +234,6 @@ public class LocationDAO {
             mo.setMarque(ma);
 
 
-
         }
         l.getVehicule().setModele(mo);
         l.setClient(cli);
@@ -240,5 +241,50 @@ public class LocationDAO {
         return l;
 
 
+    }
+
+    public boolean terminateFacture(Facture f) {
+
+        boolean isOK = true;
+        openForWrite();
+        db.beginTransaction();
+        try {
+            ContentValues cf = getContentValueFacture(f);
+            ContentValues cv = getContentValueVehicule(f.getLocation().getVehicule());
+            ContentValues cl = getContentValues(f.getLocation());
+
+            db.insert(ConstanteDB.FACTURES, null, cf);
+            db.update(ConstanteDB.VEHICULES, cv, ConstanteDB.V_IMMAT + " = '" + f.getLocation().getVehicule().getImmatriculation() + "'", null);
+            db.update(ConstanteDB.LOCATIONS, cl, ConstanteDB.LOC_ID + " = '" + f.getLocation().getiD().toString() + "'", null);
+
+            db.setTransactionSuccessful();
+
+        } catch (Exception e) {
+            isOK = false;
+            e.printStackTrace();
+        }
+        db.endTransaction();
+        return isOK;
+    }
+
+    private ContentValues getContentValueFacture(Facture f) {
+
+        ContentValues c = new ContentValues();
+        c.put(ConstanteDB.FACT_ID, f.getLocation().getiD().toString());
+        c.put(ConstanteDB.FACT_DFIN, f.getDateFinReel().getTime());
+        c.put(ConstanteDB.FACT_MONTANT, f.getMontant());
+        return c;
+    }
+
+    private ContentValues getContentValueVehicule(Vehicule v) {
+        ContentValues c = new ContentValues();
+//        c.put(ConstanteDB.V_AGENCE_ID, v.getAgence().getiD().toString());
+        c.put(ConstanteDB.V_CNIT_VE, v.getModele().getcNIT());
+        c.put(ConstanteDB.V_IMMAT, v.getImmatriculation());
+        c.put(ConstanteDB.V_STATUT, v.getEtat());
+        c.put(ConstanteDB.V_KM, v.getKilometrage());
+        c.put(ConstanteDB.V_PRIX_JOUR, v.getPrixJournalier());
+
+        return c;
     }
 }

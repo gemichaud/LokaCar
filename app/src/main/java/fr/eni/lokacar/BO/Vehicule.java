@@ -115,7 +115,7 @@ public class Vehicule implements Parcelable{
                 ", etat='" + etat + '\'' +
                 ", kilometrage=" + kilometrage +
                 ", modele=" + modele.toString() +
-                ", agence=" + agence.toString() +
+
                 '}';
     }
 }

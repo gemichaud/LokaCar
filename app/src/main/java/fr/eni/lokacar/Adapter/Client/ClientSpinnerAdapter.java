@@ -1,8 +1,10 @@
 package fr.eni.lokacar.Adapter.Client;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,36 +32,23 @@ public class ClientSpinnerAdapter extends ArrayAdapter<Client> {
     }
 
 
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-        ViewHolder viewHolder;
-
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        if(convertView == null){
-            convertView = inflater.inflate(res,parent,false);
-            viewHolder = new ViewHolder();
-            viewHolder.avClient = (TextView)convertView.findViewById(R.id.lstClient);
-
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder)convertView.getTag();
-        }
-
-        Client client = getItem(position);
-
-        viewHolder.avClient.setText(client.getPrenom() + " " + client.getNom());
-
-
-        return convertView;
-
-
+    public View getView(int position, View convertView, ViewGroup parent) {
+        TextView label = (TextView) super.getView(position, convertView, parent);
+        label.setTextColor(Color.BLACK);
+        label.setText(this.getItem(position).getPrenom() + " " + this.getItem(position).getNom());
+        return label;
     }
 
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        TextView label = (TextView) super.getView(position, convertView, parent);
+        label.setTextColor(Color.BLACK);
+        label.setText(this.getItem(position).getPrenom() + " " + this.getItem(position).getNom());
+        return label;
+    }
 
-    static class ViewHolder{
+    static class ViewHolder {
+
         TextView avClient;
     }
 
